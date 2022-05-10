@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_act"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/_10sdp"
+    android:id="@+id/ariderLay"
+    android:clickable="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_10sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rider Name"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/riderName"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone#"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone#"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/riderPhone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email:"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/riderEmail"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CNIC#"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deliver To:"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/riderCNIC"
+            />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+
+
+

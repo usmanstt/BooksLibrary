@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".pageSearch"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/teal_200"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/linear3"
+        app:layout_constraintBottom_toTopOf="@id/linearlayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="@dimen/_15sdp">
+
+        <TextView
+            android:id="@+id/Books"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bebasneueregular"
+            android:text="Search Books"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_25ssp"
+            android:elevation="@dimen/_15sdp"
+            android:layout_gravity="center_vertical"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear3"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/linearlayout"
+        android:layout_below="@id/linear3">
+
+        <EditText
+            android:id="@+id/searchField"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/circle"
+            android:clickable="true"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:padding="@dimen/_10sdp"
+            android:textCursorDrawable="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/levelText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/levelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bebasneueregular"
+            android:paddingLeft="@dimen/_20sdp"
+            android:text="Select Level"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20ssp"
+            app:layout_constraintBottom_toTopOf="@id/filterLevel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchField" />
+
+        <Spinner
+            android:id="@+id/filterLevel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/circle"
+            app:layout_constraintBottom_toTopOf="@id/TypeText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/levelText" />
+
+        <TextView
+            android:id="@+id/TypeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bebasneueregular"
+            android:paddingLeft="@dimen/_20sdp"
+            android:text="Select Type"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20ssp"
+            app:layout_constraintBottom_toTopOf="@id/filterType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filterLevel" />
+
+        <Spinner
+            android:id="@+id/filterType"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/circle"
+            app:layout_constraintBottom_toTopOf="@id/linear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TypeText" />
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/circle"
+            android:elevation="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/booksRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="horizontal"
+                tools:listitem="@layout/books" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/image"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:src="@drawable/logologin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/app_title"
+        android:id="@+id/image"
+        />
+
+    <TextView
+
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_16sdp"
+        android:fontFamily="@font/bebasneueregular"
+        android:text="Jan Muhammad\nKnowledge\nOasis"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_35ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        />
+
+    <com.hmomeni.progresscircula.ProgressCircula
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        app:pgc_indeterminate="true"
+        android:id="@+id/progressBarC"
+        app:pgc_progress="40"
+        app:pgc_rimColor="@color/teal_200"
+        app:pgc_showProgress="true"
+        app:pgc_speed="3"
+        app:pgc_textColor="#00FF00"
+        app:pgc_rimWidth="@dimen/_5sdp"
+        android:layout_centerInParent="true"
+        android:elevation="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_50sdp"
+        />
+
+
+</LinearLayout>

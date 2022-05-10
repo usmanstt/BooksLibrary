@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.JanMuhammadKnowledgeOasis">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/jmlogo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/jmlogo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TestProject">
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.VerifyOTP"></activity>
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.RewardsAdmin" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.AllBooksAdmin" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.AllRiders" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.UploadRiders" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.AllOrdersAdmin" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.Rewards" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.PersonalInformation" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.AllOrdersCust" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.CheckOut" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.BookDetails" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.UploadBooks" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.AdminPortal" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.Home" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.Signup" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.Login" />
+        <activity android:name="com.example.JanMuhammadKnowledgeOasis.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

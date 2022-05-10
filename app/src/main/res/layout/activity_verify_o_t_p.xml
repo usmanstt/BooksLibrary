@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VerifyOTP"
+    android:background="@drawable/image_">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+    <ImageView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:src="@drawable/logologin"
+        android:id="@+id/loginlogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:elevation="@dimen/_15sdp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_15sdp"
+        android:fontFamily="@font/bebasneueregular"
+        android:text="Verification OTP On The Way!"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_25ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginlogo" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:hint="Enter OTP"
+        android:inputType="text"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:padding="@dimen/_10sdp"
+        android:elevation="@dimen/_5sdp"
+        android:maxLines="1"
+        android:maxLength="4"
+        android:id="@+id/otpText"
+        android:textCursorDrawable="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/btnVerify"
+        />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otpText"
+        android:backgroundTint="@color/teal_200"
+        android:text="Verify"
+        android:textColor="@color/white"
+        android:elevation="@dimen/_5sdp"
+        android:id="@+id/btnVerify"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_150sdp"
+        />
+
+    </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_act"
+    >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_15sdp"
+        android:fontFamily="@font/bebasneueregular"
+        android:text="Enter Address"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_25ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintBottom_toTopOf="@id/streetAddress"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:hint="Enter Address"
+        android:inputType="text"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@id/submitAddress"
+        android:padding="@dimen/_10sdp"
+        android:elevation="@dimen/_5sdp"
+        android:maxLines="1"
+        android:id="@+id/streetAddress"
+        android:textCursorDrawable="@color/black"
+        />
+
+
+    <Button
+        android:id="@+id/submitAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/streetAddress"
+        app:layout_constraintVertical_bias="0.073" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use Saved Address"
+        android:id="@+id/savedAddress"
+        android:clickable="true"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/submitAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

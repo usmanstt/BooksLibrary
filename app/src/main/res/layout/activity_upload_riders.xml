@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadRiders"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_15sdp"
+        android:fontFamily="@font/bebasneueregular"
+        android:text="Add Rider"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_25ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/riderFullName"
+        android:layout_marginTop="@dimen/_50sdp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:hint="Enter Full Name"
+        android:inputType="text"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:padding="@dimen/_10sdp"
+        android:elevation="@dimen/_5sdp"
+        android:maxLines="1"
+        android:id="@+id/riderFullName"
+        android:textCursorDrawable="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/riderPhone"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:hint="Enter Phone"
+        android:inputType="number"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riderFullName"
+        android:padding="@dimen/_10sdp"
+        android:elevation="@dimen/_5sdp"
+        android:maxLines="1"
+        android:id="@+id/riderPhone"
+        android:textCursorDrawable="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/riderPhone"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_50sdp"
+
+        android:hint="Enter CNIC"
+        android:inputType="text"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riderPhone"
+        android:padding="@dimen/_10sdp"
+        android:elevation="@dimen/_5sdp"
+        android:maxLines="1"
+        android:id="@+id/riderCNIC"
+        android:textCursorDrawable="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/riderEmail"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:hint="Enter Email"
+        android:inputType="text"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riderCNIC"
+        android:padding="@dimen/_10sdp"
+        android:elevation="@dimen/_5sdp"
+        android:maxLines="1"
+        android:id="@+id/riderEmail"
+        android:textCursorDrawable="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/btnAdd"
+        />
+
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riderEmail"
+        android:layout_marginBottom="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Add"
+        android:textColor="@color/white"
+        android:elevation="@dimen/_5sdp"
+        android:id="@+id/btnAdd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <com.hmomeni.progresscircula.ProgressCircula
+        android:id="@+id/progress"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAdd"
+        app:layout_constraintVertical_bias="0.921"
+        app:pgc_indeterminate="true"
+        app:pgc_progress="40"
+        app:pgc_rimColor="@color/black"
+        app:pgc_showProgress="true"
+        app:pgc_speed="3"
+        app:pgc_textColor="#00FF00"
+        app:pgc_rimWidth="@dimen/_3sdp"
+        android:layout_marginBottom="@dimen/_120sdp"
+        android:elevation="@dimen/_5sdp"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

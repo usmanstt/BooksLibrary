@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_act"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnL1"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:text="Upload Front Cover"
+            android:id="@+id/frontcover"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:backgroundTint="@color/light_green"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnL2"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:text="Upload Back Cover"
+            android:id="@+id/backcover"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:backgroundTint="@color/light_green"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnL2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/btnL3"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:text="Upload Content Cover"
+            android:id="@+id/contentCover"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:backgroundTint="@color/light_green"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnL3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/btnL4"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/submitBookInfo"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:backgroundTint="@color/teal_200"
+            android:text="Submit"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/backcover"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginBottom="@dimen/_20sdp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

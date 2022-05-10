@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:elevation="@dimen/_15sdp"
+        android:fontFamily="@font/bebasneueregular"
+        android:text="Assign Rider"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_25ssp"
+        app:layout_constraintBottom_toTopOf="@id/it"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/it"
+        android:layout_below="@id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/circle"
+        android:maxLines="1"
+        android:padding="@dimen/_10sdp"
+        android:textCursorDrawable="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/newPass1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="Rider ID"
+        android:id="@+id/head"
+        android:layout_below="@id/it"
+        android:focusable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/it"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textSize="@dimen/_18ssp"
+        android:elevation="@dimen/_5sdp"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/newPass1"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:text="ID"
+        android:layout_below="@id/head"
+        android:focusable="false"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/it"
+        android:paddingTop="@dimen/_11sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textSize="@dimen/_13ssp"
+        android:elevation="@dimen/_5sdp"
+        android:maxLines="1"
+        android:id="@+id/newPass1"
+        app:layout_constraintBottom_toTopOf="@id/btnChangeP"
+        android:textCursorDrawable="@color/black"
+        />
+
+    <Button
+        android:id="@+id/btnChangeP"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green"
+        android:elevation="@dimen/_5sdp"
+        android:layout_centerInParent="true"
+        android:text="Assign"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newPass1"
+        app:layout_constraintVertical_bias="0.031"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_below="@id/newPass1"/>
+
+
+</RelativeLayout>

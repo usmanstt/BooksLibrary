@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/_20ssp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return Book?"
+        android:textSize="@dimen/_25ssp"
+        android:fontFamily="@font/bebasneueregular"
+        android:textColor="@color/black"
+        android:paddingBottom="@dimen/_20sdp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:buttonTint="@drawable/checkbox_tint"
+            android:text="Yes"
+            android:textSize="@dimen/_15ssp"
+            android:id="@+id/checkRYesItem"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:checked="true"
+            />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:buttonTint="@drawable/checkbox_tint"
+            android:text="No"
+            android:textSize="@dimen/_15ssp"
+            android:id="@+id/checkRNoItem"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rate Book"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:layout_marginRight="@dimen/_10sdp"/>
+
+        <EditText
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:buttonTint="@drawable/checkbox_tint"
+            android:background="@drawable/circle"
+            android:textSize="@dimen/_15ssp"
+            android:id="@+id/rating"
+            android:inputType="number"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@drawable/checkbox_tint"
+            android:text=" /10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15ssp"
+            />
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:backgroundTint="@color/teal_200"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/returnBtn"/>
+
+
+</LinearLayout>

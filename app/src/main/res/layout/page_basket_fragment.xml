@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".pageBasket"
+    android:background="@color/light_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:id="@+id/linear2"
+        android:background="@color/teal_200"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="@dimen/_15sdp">
+
+    <TextView
+        android:id="@+id/Books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bebasneueregular"
+        android:text="Book Basket"
+        android:layout_gravity="center_vertical"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_25ssp"
+        app:layout_constraintBottom_toTopOf="@id/linear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="@dimen/_15sdp"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_400sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:background="@color/white"
+        android:elevation="@dimen/_15sdp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/lin"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@id/linear2"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/booksRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            tools:listitem="@layout/cart_books" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/lin"
+        android:layout_below="@id/linear"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <Button
+            android:id="@+id/checkOutBtn"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_200"
+            android:text="Check Out"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

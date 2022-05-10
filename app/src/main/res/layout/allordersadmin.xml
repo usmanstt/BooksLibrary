@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_act"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/_10sdp"
+    android:id="@+id/abookLay"
+    android:clickable="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_10sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Book Name"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/bookName"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reference#"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reference#"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/refBook"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/orderStatus"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order#"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order#"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/orderNum"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deliver To:"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/deliverTo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assigned Rider:"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/riderHead"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rider"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/riderName"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assigned Address:"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address:"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
+            android:id="@+id/addressAd"/>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+
+
+

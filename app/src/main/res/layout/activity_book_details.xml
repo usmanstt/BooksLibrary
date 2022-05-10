@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BookDetails"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/teal_200"
+        android:elevation="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        app:layout_constraintBottom_toTopOf="@id/layout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:fontFamily="@font/bebasneueregular"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:text="All Orders"
+            app:layout_constraintBottom_toTopOf="@id/linear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.41" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_below="@id/linear2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear2"
+        app:layout_constraintBottom_toTopOf="@id/layout3"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:background="@drawable/background_act"
+        android:padding="@dimen/_20sdp"
+        android:id="@+id/layout2"
+        android:elevation="@dimen/_5sdp">
+
+        <ImageView
+            android:id="@+id/imageBookFront"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:elevation="@dimen/_10sdp"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:id="@+id/imageBookBack"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:elevation="@dimen/_10sdp"
+            android:scaleType="fitXY"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@id/layout2"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout2"
+        app:layout_constraintBottom_toTopOf="@id/btnAddCart"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:background="@drawable/background_act"
+        android:padding="@dimen/_20sdp"
+        android:id="@+id/layout3"
+        android:elevation="@dimen/_5sdp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_26sdp"
+                android:elevation="@dimen/_10sdp"
+                android:text="Title: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                android:text="Book Name"
+                android:textSize="@dimen/_13ssp"
+                android:id="@+id/book"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_13sdp"
+                android:elevation="@dimen/_10sdp"
+                android:text="Author: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                android:text="Author Name"
+                android:textSize="@dimen/_13ssp"
+                android:id="@+id/author"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:elevation="@dimen/_10sdp"
+                android:text="Type: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                android:text="Type"
+                android:textSize="@dimen/_13ssp"
+                android:id="@+id/type"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_23sdp"
+                android:elevation="@dimen/_10sdp"
+                android:text="Level: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                android:text="Level"
+                android:textSize="@dimen/_13ssp"
+                android:id="@+id/level"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:elevation="@dimen/_10sdp"
+                android:text="Rating: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                android:text="0"
+                android:textSize="@dimen/_13ssp"
+                android:id="@+id/rating"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                android:text="/10"
+                android:textSize="@dimen/_13ssp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:elevation="@dimen/_10sdp"
+                android:text="Status: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                android:text=""
+                android:textSize="@dimen/_13ssp"
+                android:id="@+id/quantity"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/layout3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@id/layout3"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:padding="@dimen/_10sdp">
+
+        <Button
+            android:id="@+id/btnAddCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_200"
+            android:text="Add to Basket"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnCheckContent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout3" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCheckContent"
+            android:backgroundTint="@color/teal_200"
+            app:layout_constraintTop_toBottomOf="@id/layout3"
+            app:layout_constraintStart_toEndOf="@id/btnAddCart"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Check Content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

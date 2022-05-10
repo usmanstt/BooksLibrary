@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation.xml"
+    app:startDestination="@id/pageHome">
+
+    <fragment
+        android:id="@+id/pageHome"
+        android:name="com.example.JanMuhammadKnowledgeOasis.pageHome"
+        android:label="page_home_fragment"
+        tools:layout="@layout/page_home_fragment" />
+    <fragment
+        android:id="@+id/pageBasket"
+        android:name="com.example.JanMuhammadKnowledgeOasis.pageBasket"
+        android:label="page_basket_fragment"
+        tools:layout="@layout/page_basket_fragment" />
+    <fragment
+        android:id="@+id/pageSearch"
+        android:name="com.example.JanMuhammadKnowledgeOasis.pageSearch"
+        android:label="page_search_fragment"
+        tools:layout="@layout/page_search_fragment" />
+    <fragment
+        android:id="@+id/pageMore"
+        android:name="com.example.JanMuhammadKnowledgeOasis.pageMore"
+        android:label="page_more_fragment"
+        tools:layout="@layout/page_more_fragment" />
+
+</navigation>
