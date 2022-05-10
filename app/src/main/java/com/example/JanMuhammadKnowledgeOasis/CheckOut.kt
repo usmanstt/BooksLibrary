@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +31,7 @@ class CheckOut : AppCompatActivity() {
     private lateinit var txtAddress: TextView
     private lateinit var checkDel: AppCompatCheckBox
     private lateinit var arrayLoc: ArrayList<String>
-    private lateinit var btnCheckOut: Button
+    private lateinit var btnCheckOut: AppCompatButton
     var shp: SharedPreferences? = null
     var combinedAddress = ""
     private lateinit var phone: String

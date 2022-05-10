@@ -1,39 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    tools:context=".Home"
+    android:background="@color/white">
 
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:id="@+id/navigation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/_50sdp"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:background="@color/trans"-->
-<!--        android:foreground="?attr/selectableItemBackground"-->
-<!--        app:itemBackground="@color/wh"-->
-<!--        app:itemIconTint="@android:color/black"-->
-<!--        app:itemTextColor="@android:color/black"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:menu="@menu/bottomnavmenu"/>-->
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/wh"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/linear3"
+        app:layout_constraintBottom_toTopOf="@id/linear2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="@dimen/_15sdp"
+        >
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/Books"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Books Catalog"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_17ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.085"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:elevation="@dimen/_15sdp"
+                android:layout_gravity="center_vertical"/>
+
+
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/ic_baseline_search_24"
+                android:layout_alignParentRight="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_60sdp"
+                android:layout_toLeftOf="@id/profile"
+                android:id="@+id/search"
+                android:elevation="@dimen/_10sdp"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/ic_baseline_home_24"
+                android:layout_alignParentRight="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_90sdp"
+                android:layout_toLeftOf="@id/profile"
+                android:id="@+id/home"
+                android:elevation="@dimen/_10sdp"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/ic_baseline_person_24"
+                android:layout_alignParentRight="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:id="@+id/profile"
+                android:elevation="@dimen/_10sdp"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/ic_baseline_shopping_cart_24"
+                android:layout_alignParentRight="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_toLeftOf="@id/search"
+                android:id="@+id/basket"
+                />
+
+        </RelativeLayout>
+
+
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/linear2"
+        app:layout_constraintTop_toBottomOf="@id/linear3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/app_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:layout_below="@id/linear3"
+        >
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/books"
+            android:id="@+id/recbooksRecycler"
+            android:orientation="horizontal"
+
+            />
+
+        <com.hmomeni.progresscircula.ProgressCircula
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            app:pgc_indeterminate="true"
+            android:id="@+id/progressBarC"
+            app:pgc_progress="40"
+            app:pgc_rimColor="@color/teal_200"
+            app:pgc_showProgress="true"
+            app:pgc_speed="3"
+            app:pgc_textColor="#00FF00"
+            app:pgc_rimWidth="@dimen/_5sdp"
+            android:layout_centerInParent="true"
+            android:elevation="@dimen/_15sdp"
+            />
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_20sdp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:src="@drawable/all_icon"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:id="@+id/fab"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linear"
+        android:background="@drawable/backgroundforallbooks"
+        app:layout_constraintTop_toBottomOf="@id/linear3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linear2"
+        android:orientation="vertical"
+        android:elevation="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_below="@id/linear3"
+        android:visibility="gone"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:hint="Search All Books...."
+                android:textColor="@color/black"
+                android:paddingLeft="@dimen/_10sdp"
+                android:background="@drawable/background_act"
+                android:layout_toLeftOf="@id/drop"
+                android:layout_gravity="left"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/ic_baseline_arrow_drop_down_circle_24"
+                android:layout_alignParentRight="true"
+
+                android:layout_marginRight="@dimen/_20sdp"
+                android:id="@+id/drop"
+                android:clickable="true"
+                />
+        </RelativeLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/books"
+            android:id="@+id/booksRecycler"
+            android:orientation="horizontal"
+            />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

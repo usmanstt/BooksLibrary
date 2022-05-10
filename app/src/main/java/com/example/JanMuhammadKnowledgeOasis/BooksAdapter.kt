@@ -21,6 +21,7 @@ class BooksAdapter(var booksList: ArrayList<BooksModel>, var context: Context, v
     override fun onBindViewHolder(holder: BooksAdapter.ViewHolder, position: Int) {
         val currentItem = booksList[position]
         Glide.with(context).load(currentItem.imageFront).into(holder.bookImage)
+        Glide.with(context).load(currentItem.imageBack).into(holder.bookBack)
         holder.bookTitle.text = currentItem.book_name.toString()
         holder.bookAuthor.text = currentItem.author.toString()
 //        holder.bookType.text = currentItem.book_type.toString()
@@ -44,6 +45,7 @@ class BooksAdapter(var booksList: ArrayList<BooksModel>, var context: Context, v
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
         var bookImage = itemView.findViewById<ImageView>(com.example.JanMuhammadKnowledgeOasis.R.id.bookfrontCover)
         var bookTitle = itemView.findViewById<TextView>(R.id.bookName)
+        var bookBack = itemView.findViewById<ImageView>(com.example.JanMuhammadKnowledgeOasis.R.id.bookbackCover)
         var bookAuthor = itemView.findViewById<TextView>(R.id.bookAuthor)
 //        var bookType = itemView.findViewById<TextView>(com.example.testproject.R.id.bookType)
 //        var bookRating = itemView.findViewById<TextView>(com.example.testproject.R.id.bookRating)

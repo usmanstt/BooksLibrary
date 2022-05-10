@@ -94,6 +94,7 @@ class BookDetails : AppCompatActivity() {
 
         backBtn.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
         }
 
         try {

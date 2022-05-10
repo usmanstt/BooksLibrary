@@ -15,5 +15,6 @@
     <color name="green">#2E8B57</color>
     <color name="light_green">#DAF7A6</color>
     <color name="trans">#D9FFFFFF</color>
+    <color name="trans2">#e8ecf1</color>
     <color name="wh">#eeeeee</color>
 </resources>
