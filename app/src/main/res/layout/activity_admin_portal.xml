@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,36 +8,62 @@
     android:background="@color/white">
 
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bebasneueregular"
-            android:text="Admin Portal"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_25ssp"
-            app:layout_constraintBottom_toTopOf="@id/linear"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.086"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.303" />
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/wh"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/linear3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="@dimen/_15sdp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/Books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Admin Portal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    android:layout_toRightOf="@id/search"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    />
+
+
+
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_400sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_100sdp"
-            android:background="@drawable/circle"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text">
+            android:layout_below="@id/linear3"
+            android:layout_marginTop="@dimen/_20sdp">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
@@ -46,9 +72,10 @@
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/circle"
+                android:background="@color/green"
                 android:elevation="@dimen/_5sdp"
                 android:text="All Orders"
+                android:textColor="@color/white"
                 android:id="@+id/allOrders"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -58,9 +85,10 @@
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/circle"
+                android:background="@color/green"
                 android:elevation="@dimen/_5sdp"
                 android:text="Delivery Riders"
+                android:textColor="@color/white"
                 android:id="@+id/deliveryRiders"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -70,9 +98,10 @@
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/circle"
+                android:background="@color/green"
                 android:elevation="@dimen/_5sdp"
                 android:text="Rewards"
+                android:textColor="@color/white"
                 android:id="@+id/rewardBtn"/>
 
 
@@ -84,11 +113,12 @@
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/circle"
+                android:background="@color/green"
                 android:elevation="@dimen/_5sdp"
-                android:text="All Books" />
+                android:text="All Books"
+                android:textColor="@color/white"/>
 
 
         </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.JanMuhammadKnowledgeOasis
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,6 +30,7 @@ class UploadBooks : AppCompatActivity() {
     private lateinit var authorET: EditText
     private lateinit var publisherET: EditText
     private lateinit var btnUpload: Button
+    private lateinit var btnBack: ImageView
     private lateinit var imageFUri: Uri
     private lateinit var imageBUri: Uri
     private lateinit var imageCUri: Uri
@@ -50,11 +52,21 @@ class UploadBooks : AppCompatActivity() {
         authorET = findViewById(R.id.author)
         publisherET = findViewById(R.id.publisher)
         btnUpload = findViewById(R.id.btnUpload)
+        btnBack = findViewById(R.id.backBtn)
         val fronCover: Button = findViewById(R.id.frontcover)
         val backCover: Button = findViewById(R.id.backcover)
         val contentCover: Button = findViewById(R.id.contentCover)
 //        val submitInfo: Button = findViewById(R.id.submitBookInfo)
         fEncoded = ""
+
+        btnBack.setOnClickListener {
+            val intent = Intent(applicationContext, AllBooksAdmin::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
+        }
 
         var arrayofType: ArrayList<String> = arrayListOf("Science","Fiction/Story/Novels","Math","Language",
             "Religious","History","Information Technology","Magazines & News","School Books")

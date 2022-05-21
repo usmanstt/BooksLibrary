@@ -1,5 +1,6 @@
 package com.example.JanMuhammadKnowledgeOasis
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -48,7 +49,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        backBtn = findViewById(R.id.text)
+        backBtn = findViewById(R.id.backBtn)
         spinner = findViewById(R.id.spinnerStatusAdmin)
 
         var arrayAdapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_dropdown_item, arrayStatus)
@@ -62,6 +63,8 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
         arrayOrdersD = ArrayList()
         arrayOrdersR = ArrayList()
 
+        if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
+        var userName = shp!!.getString("name", "") as String
 
 
         allOrdersAdapter = AllOrdersAdminAdapter(arrayOrders, this)
@@ -95,7 +98,12 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
 
         }
         backBtn.setOnClickListener {
-            finish()
+            val intent = Intent(applicationContext, AdminPortal::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
         }
 
 
@@ -113,8 +121,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
                             arrayOrdersR.clear()
 
 
-                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
-                            var userName = shp!!.getString("name", "") as String
+
                             //traversing through all the object
 
                             for (i in 0 until array.length()) {
@@ -175,8 +182,8 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
                             arrayOrdersD.clear()
 
 
-                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
-                            var userName = shp!!.getString("name", "") as String
+//                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
+//                            var userName = shp!!.getString("name", "") as String
                             //traversing through all the object
 
                             for (i in 0 until array.length()) {
@@ -237,8 +244,8 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
                             arrayOrdersS.clear()
 
 
-                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
-                            var userName = shp!!.getString("name", "") as String
+//                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
+//                            var userName = shp!!.getString("name", "") as String
                             //traversing through all the object
 
                             for (i in 0 until array.length()) {
@@ -299,8 +306,8 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
                             arrayOrdersP.clear()
 
 
-                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
-                            var userName = shp!!.getString("name", "") as String
+//                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
+//                            var userName = shp!!.getString("name", "") as String
                             //traversing through all the object
 
                             for (i in 0 until array.length()) {
@@ -361,8 +368,8 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
                             arrayOrders.clear()
 
 
-                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
-                            var userName = shp!!.getString("name", "") as String
+//                            if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
+//                            var userName = shp!!.getString("name", "") as String
                             //traversing through all the object
 
                             for (i in 0 until array.length()) {
@@ -505,6 +512,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
                                         object : Response.Listener<String> {
                                             override fun onResponse(response: String?) {
                                                 Toast.makeText(applicationContext, response.toString(), Toast.LENGTH_LONG).show()
+                                                alertDialog1.dismiss()
                                             }
                                         },
                                         Response.ErrorListener {

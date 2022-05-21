@@ -1,5 +1,6 @@
 package com.example.JanMuhammadKnowledgeOasis
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,16 +18,17 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONException
 
 class RewardsAdmin : AppCompatActivity() {
 
     lateinit var recycler: RecyclerView
-    lateinit var rewardAdapter: RewardAdapter
+    lateinit var rewardAdapter: RewardsAdapterAdmin
     lateinit var rewardList: ArrayList<RewardsModel>
     lateinit var backBtn: ImageView
-    lateinit var btnAdd: Button
+    lateinit var btnAdd: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +41,17 @@ class RewardsAdmin : AppCompatActivity() {
         recycler.setHasFixedSize(true)
 
         rewardList = ArrayList()
-        rewardAdapter = RewardAdapter(rewardList)
+        rewardAdapter = RewardsAdapterAdmin(rewardList)
 
-        backBtn = findViewById(R.id.text)
+        backBtn = findViewById(R.id.backBtn)
 
         backBtn.setOnClickListener {
-            finish()
+            val intent = Intent(applicationContext, AdminPortal::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
         }
 
         btnAdd.setOnClickListener {

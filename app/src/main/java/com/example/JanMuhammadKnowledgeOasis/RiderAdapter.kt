@@ -3,6 +3,7 @@ package com.example.JanMuhammadKnowledgeOasis
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,7 @@ class RiderAdapter(var riderList: ArrayList<RiderModel>, var riderInterface: Rid
         var riderPhone = itemView.findViewById<TextView>(com.example.JanMuhammadKnowledgeOasis.R.id.riderPhone)
         var riderEmail = itemView.findViewById<TextView>(com.example.JanMuhammadKnowledgeOasis.R.id.riderEmail)
         var riderCnic = itemView.findViewById<TextView>(com.example.JanMuhammadKnowledgeOasis.R.id.riderCNIC)
-        var riderLay = itemView.findViewById<LinearLayout>(com.example.JanMuhammadKnowledgeOasis.R.id.ariderLay)
+        var riderLay = itemView.findViewById<Button>(com.example.JanMuhammadKnowledgeOasis.R.id.delete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RiderAdapter.ViewHolder {

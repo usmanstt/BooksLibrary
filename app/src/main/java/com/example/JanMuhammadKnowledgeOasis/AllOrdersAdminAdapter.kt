@@ -3,6 +3,7 @@ package com.example.JanMuhammadKnowledgeOasis
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -20,12 +21,13 @@ class AllOrdersAdminAdapter(var ordersList: ArrayList<PlacedOrdersModel>, var al
         holder.bookRef.text = currentItem.ref_number.toString()
         holder.bookStatus.text = currentItem.order_status.toString()
         holder.order.text = currentItem.order_number.toString()
-        holder.deliverTo.text = currentItem.buyer + " / " + currentItem.buyer_fullname
-        if (holder.rider.text != ""){
-            holder.rider.text = currentItem.delievery_boy
+        holder.deliverTo.text = currentItem.buyer_fullname
+        if (holder.rider.text.isEmpty()){
+
+            holder.rider.text = "None Assigned"
         }
         else{
-            holder.rider.text = "None Assigned"
+            holder.rider.text = currentItem.delievery_boy
         }
 
         if (currentItem.delivery_address == ""){
@@ -54,7 +56,7 @@ class AllOrdersAdminAdapter(var ordersList: ArrayList<PlacedOrdersModel>, var al
         var rider = itemView.findViewById<TextView>(com.example.JanMuhammadKnowledgeOasis.R.id.riderName)
         var rider1 = itemView.findViewById<TextView>(com.example.JanMuhammadKnowledgeOasis.R.id.riderHead)
         var address = itemView.findViewById<TextView>(com.example.JanMuhammadKnowledgeOasis.R.id.addressAd)
-        var lay = itemView.findViewById<LinearLayout>(R.id.abookLay)
+        var lay = itemView.findViewById<Button>(R.id.assignRider)
     }
 
     fun AllOrdersAdapter(oList: ArrayList<PlacedOrdersModel>, interfaces: AllOrdersInterfaceAdmin) {

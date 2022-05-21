@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -20,6 +21,9 @@ class BooksAdapterAdmin (var booksList: ArrayList<BooksModel>, var context: Cont
     override fun onBindViewHolder(holder: BooksAdapterAdmin.ViewHolder, position: Int) {
         val currentItem = booksList[position]
         Glide.with(context).load(currentItem.imageFront).into(holder.bookImage)
+        Glide.with(context).load(currentItem.imageBack).into(holder.bookBack)
+        holder.bookTitle.text = currentItem.book_name.toString()
+        holder.bookAuthor.text = currentItem.author.toString()
 //        holder.bookTitle.text = currentItem.book_name.toString()
 //        holder.bookAuthor.text = currentItem.author.toString()
 //        holder.bookType.text = currentItem.book_type.toString()
@@ -42,6 +46,9 @@ class BooksAdapterAdmin (var booksList: ArrayList<BooksModel>, var context: Cont
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var bookImage = itemView.findViewById<ImageView>(com.example.JanMuhammadKnowledgeOasis.R.id.bookfrontCover)
+        var bookTitle = itemView.findViewById<TextView>(R.id.bookName)
+        var bookBack = itemView.findViewById<ImageView>(com.example.JanMuhammadKnowledgeOasis.R.id.bookbackCover)
+        var bookAuthor = itemView.findViewById<TextView>(R.id.bookAuthor)
 //        var bookTitle = itemView.findViewById<TextView>(com.example.testproject.R.id.bookName)
 //        var bookAuthor = itemView.findViewById<TextView>(com.example.testproject.R.id.bookAuthor)
 //        var bookType = itemView.findViewById<TextView>(com.example.testproject.R.id.bookType)

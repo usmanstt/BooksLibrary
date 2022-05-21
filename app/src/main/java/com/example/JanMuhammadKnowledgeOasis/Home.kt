@@ -3,12 +3,14 @@ package com.example.JanMuhammadKnowledgeOasis
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -30,6 +32,7 @@ import org.json.JSONException
 class Home : AppCompatActivity(), BookInterface{
 
     private val URL_PRODUCTS = "https://usmansorion.000webhostapp.com/fetchBooks.php"
+    lateinit var search: EditText
     private lateinit var booksList: ArrayList<BooksModel>
     private lateinit var userbooksList: ArrayList<BooksModel>
     private lateinit var recyclerView: RecyclerView
@@ -53,6 +56,7 @@ class Home : AppCompatActivity(), BookInterface{
     private lateinit var buyers: ArrayList<String>
     private lateinit var refs: ArrayList<String>
     private lateinit var cartList: ArrayList<CartItemsModel>
+    private lateinit var filteredlist: ArrayList<BooksModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +66,14 @@ class Home : AppCompatActivity(), BookInterface{
 //        val navController = findNavController(R.id.fragment)
 //        bottomMenu.setupWithNavController(navController)
 
+        if (shp == null) shp = applicationContext.getSharedPreferences(
+                "myPreferences",
+                AppCompatActivity.MODE_PRIVATE
+        )
+        userName = shp!!.getString("name", "") as String
+
         recyclerView = findViewById(R.id.booksRecycler)
+        search = findViewById(R.id.searchBooks)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView2 = findViewById(R.id.recbooksRecycler)
@@ -77,6 +88,22 @@ class Home : AppCompatActivity(), BookInterface{
         buyers = ArrayList()
         refs = ArrayList()
         cartList = ArrayList()
+        filteredlist = ArrayList()
+
+        search.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                filter(s.toString())
+            }
+
+        })
 
         homebtn = findViewById(R.id.home)
         searchbtn = findViewById(R.id.search)
@@ -87,13 +114,72 @@ class Home : AppCompatActivity(), BookInterface{
         basketbtn.setImageResource(R.drawable.ic_baseline_shopping_cart_24)
         profilebtn.setImageResource(R.drawable.ic_baseline_person_24)
 
+        profilebtn.setOnClickListener {
+            if (userName.isEmpty()){
+                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                val factory: LayoutInflater = LayoutInflater.from(this)
+                val view: View = factory.inflate(R.layout.dialoglogin, null);
+                builder.setView(view)
+
+                val alertDialog = builder.create()
+                alertDialog.show()
+
+                val Lt = view.findViewById<TextView>(R.id.loginT)
+                val St = view.findViewById<TextView>(R.id.signupT)
+
+                Lt.setOnClickListener {
+                    val intent = Intent(applicationContext, Login::class.java)
+                    startActivity(intent)
+                }
+
+                St.setOnClickListener {
+                    val intent = Intent(applicationContext, Signup::class.java)
+                    startActivity(intent)
+                }
+            }
+            else{
+                val intent = Intent(applicationContext, Profile::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
+            }
+
+        }
+
         basketbtn.setOnClickListener {
-            val intent = Intent(applicationContext, Basket::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
+
+            if (userName.isEmpty()){
+                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                val factory: LayoutInflater = LayoutInflater.from(this)
+                val view: View = factory.inflate(R.layout.dialoglogin, null);
+                builder.setView(view)
+
+                val alertDialog = builder.create()
+                alertDialog.show()
+
+                val Lt = view.findViewById<TextView>(R.id.loginT)
+                val St = view.findViewById<TextView>(R.id.signupT)
+
+                Lt.setOnClickListener {
+                    val intent = Intent(applicationContext, Login::class.java)
+                    startActivity(intent)
+                }
+
+                St.setOnClickListener {
+                    val intent = Intent(applicationContext, Signup::class.java)
+                    startActivity(intent)
+                }
+            }
+            else {
+                val intent = Intent(applicationContext, Basket::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
+            }
         }
         searchbtn.setOnClickListener {
             val intent = Intent(applicationContext, Search::class.java)
@@ -112,17 +198,17 @@ class Home : AppCompatActivity(), BookInterface{
         booksAdapter = BooksAdapter(booksList, applicationContext, this)
         userbooksAdapter = BooksAdapter(userbooksList, applicationContext, this)
 
-        if (shp == null) shp = applicationContext.getSharedPreferences(
-                "myPreferences",
-                AppCompatActivity.MODE_PRIVATE
-        )
-        userName = shp!!.getString("name", "") as String
+//        if (shp == null) shp = applicationContext.getSharedPreferences(
+//                "myPreferences",
+//                AppCompatActivity.MODE_PRIVATE
+//        )
+//        userName = shp!!.getString("name", "") as String
 
 
 
         shp = getSharedPreferences("myPreferences", MODE_PRIVATE)
 
-        checkLogin()
+//        checkLogin()
 
         loadBooksInOrders()
         fetchCartItems()
@@ -422,6 +508,20 @@ class Home : AppCompatActivity(), BookInterface{
         req.add(Request)
     }
 
+    private fun filter(toString: String) {
+        filteredlist.clear()
+        var booksAdapter = BooksAdapter(filteredlist, applicationContext, this)
+        for (i in 0..booksList.size - 1){
+            if (booksList[i].book_name.toLowerCase().contains(toString.toLowerCase())){
+                filteredlist.add(booksList[i])
+            }
+        }
+        if (toString.isEmpty()){
+            loadBooks()
+        }
+        recyclerView.adapter = booksAdapter
+        booksAdapter.notifyDataSetChanged()
+    }
     private fun fetchCartItems() {
         var stringRequest: StringRequest = object : StringRequest(
             Request.Method.GET,

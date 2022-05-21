@@ -1,5 +1,6 @@
 package com.example.JanMuhammadKnowledgeOasis
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -139,60 +140,79 @@ class BookDetails : AppCompatActivity() {
         fetchUserID()
 
         btnAddtoCart.setOnClickListener {
-            if (status == "Available") {
-                val myReq: StringRequest = object : StringRequest(Method.POST,
-                        "https://usmansorion.000webhostapp.com/insertCart.php",
-                        object : Response.Listener<String> {
-                            override fun onResponse(response: String?) {
-                                Toast.makeText(applicationContext, response, Toast.LENGTH_LONG).show()
-                            }
+            if (shp == null){
+                shp = getSharedPreferences("myPreferences", MODE_PRIVATE)
+            }
 
-                        },
-                        Response.ErrorListener {
-                            Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
-                        }) {
-                    @Throws(AuthFailureError::class)
-                    override fun getParams(): Map<String, String>? {
-                        val params: MutableMap<String, String> = HashMap()
-                        params["book_name"] = book.toString()
-                        params["ref_number"] = ref.toString()
-                        params["buyer"] = userName.toString()
-                        params["imageFront"] = fronturl.toString()
-                        params["userID"] = id.toString()
-                        params["book_type"] = type.toString()
+
+            val u: String = shp!!.getString("name", "") as String
+
+            if (u != null && u != "") {
+//                Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show()
+                if (status == "Available") {
+                    val myReq: StringRequest = object : StringRequest(Method.POST,
+                            "https://usmansorion.000webhostapp.com/insertCart.php",
+                            object : Response.Listener<String> {
+                                override fun onResponse(response: String?) {
+                                    Toast.makeText(applicationContext, response, Toast.LENGTH_LONG).show()
+                                }
+
+                            },
+                            Response.ErrorListener {
+                                Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
+                            }) {
+                        @Throws(AuthFailureError::class)
+                        override fun getParams(): Map<String, String>? {
+                            val params: MutableMap<String, String> = HashMap()
+                            params["book_name"] = book.toString()
+                            params["ref_number"] = ref.toString()
+                            params["buyer"] = userName.toString()
+                            params["imageFront"] = fronturl.toString()
+                            params["userID"] = id.toString()
+                            params["book_type"] = type.toString()
 
 
 //                    params["image_linkB"] = bEncoded.toString()
 //                    params["image_link"] = fEncoded.toString()
 //                    params["rating"] = "0"
 //                    params["quantity"] = quan.text.toString().trim()
-                        return params
+                            return params
+                        }
                     }
-                }
 
 
-                var x: Int = 0
-                while (x < cartList.size) {
-                    if (cartList[x].buyer.toString().equals(userName) && cartList[x].ref_number.toString().equals(ref.toString())) {
-                        check = false
-                        break
-                    } else {
-                        check = true
+                    var x: Int = 0
+                    while (x < cartList.size) {
+                        if (cartList[x].buyer.toString().equals(userName) && cartList[x].ref_number.toString().equals(ref.toString())) {
+                            check = false
+                            break
+                        } else {
+                            check = true
+                        }
+                        x = x + 1
                     }
-                    x = x + 1
-                }
 
-                if (!check) {
-                    Toast.makeText(applicationContext, "Book already added!", Toast.LENGTH_LONG).show()
-                } else if (check) {
-                    var req: RequestQueue = Volley.newRequestQueue(applicationContext)
-                    req.add(myReq)
-                }
+                    if (!check) {
+                        Toast.makeText(applicationContext, "Book already added!", Toast.LENGTH_LONG).show()
+                    } else if (check) {
+                        var req: RequestQueue = Volley.newRequestQueue(applicationContext)
+                        req.add(myReq)
+                    }
 
+                }
+                else{
+                    Toast.makeText(applicationContext, "Book not available at the moment", Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Toast.makeText(applicationContext, "Please Log in/Sign up to borrow the books.", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, Login::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
             }
-            else{
-                Toast.makeText(applicationContext, "Book not available at the moment", Toast.LENGTH_LONG).show()
-            }
+
         }
 
 

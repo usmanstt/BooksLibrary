@@ -8,53 +8,67 @@
     android:background="@color/white">
 
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:id="@+id/linear2"
-        android:background="@color/teal_200"
+        android:background="@color/wh"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/linear"
+        android:id="@+id/linear3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:elevation="@dimen/_15sdp"
-        app:layout_constraintVertical_weight="0">
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:id="@+id/backBtn"
+                    android:elevation="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/Books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All Riders"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    android:layout_toRightOf="@id/search"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    />
 
 
-        <ImageView
-            android:id="@+id/text"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:fontFamily="@font/bebasneueregular"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:text="All Orders"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/_10sdp"
-            app:layout_constraintBottom_toTopOf="@id/linear"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.069"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.41" />
 
-    </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_400sdp"
-        android:background="@drawable/circle"
-        app:layout_constraintTop_toBottomOf="@id/linear2"
+        android:layout_height="match_parent"
         android:id="@+id/linear"
-        android:layout_below="@id/linear2"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_below="@id/linear3"
         app:layout_constraintBottom_toTopOf="@id/riderADD"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:elevation="@dimen/_10sdp"
         >
 
         <androidx.recyclerview.widget.RecyclerView
@@ -67,18 +81,19 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="@dimen/_70sdp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear"
-        android:backgroundTint="@color/teal_200"
-        android:text="Add New Rider"
+        android:elevation="@dimen/_20sdp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:id="@+id/riderADD"
-        android:layout_below="@id/linear"
-        android:layout_centerInParent="true"/>
+        />
 
 
 

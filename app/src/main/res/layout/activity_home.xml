@@ -187,6 +187,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
+                android:id="@+id/searchBooks"
                 />
 
             <ImageView

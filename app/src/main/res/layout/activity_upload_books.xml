@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UploadBooks"
     android:background="@color/white">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/wh"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/linear3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="@dimen/_15sdp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:id="@+id/backBtn"
+                    android:elevation="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/Books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Books"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    android:layout_toRightOf="@id/search"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    />
+
+
+
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,6 +67,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@id/linear3"
         >
 
     <LinearLayout
@@ -22,20 +76,6 @@
         android:orientation="vertical"
         android:gravity="center">
 
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:elevation="@dimen/_15sdp"
-        android:fontFamily="@font/bebasneueregular"
-        android:text="Upload Book"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_30ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
@@ -228,4 +268,4 @@
     </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

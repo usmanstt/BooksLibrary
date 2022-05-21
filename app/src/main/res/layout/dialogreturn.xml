@@ -83,11 +83,11 @@
     </LinearLayout>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:backgroundTint="@color/teal_200"
+        android:background="@drawable/button_bg"
         android:layout_marginTop="@dimen/_10sdp"
         android:id="@+id/returnBtn"/>
 

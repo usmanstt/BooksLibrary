@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Assign Rider"
-        android:id="@+id/riderDialog"
+        android:text="Please Choose One:"
+        android:textSize="@dimen/_25ssp"
+        android:fontFamily="@font/bebasneueregular"
         android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_20sdp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Assign Rider"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:id="@+id/riderDialog"
+        android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/_20sdp"
-        android:backgroundTint="@color/light_green"
+        android:backgroundTint="@color/green"
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mark Status"
         android:id="@+id/statusdialog"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
         app:layout_constraintTop_toBottomOf="@id/riderDialog"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="@dimen/_20sdp"
-        android:backgroundTint="@color/light_green"
-        android:textColor="@color/black"/>
+        android:backgroundTint="@color/green"
+        android:textColor="@color/white"/>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

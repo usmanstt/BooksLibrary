@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/jmlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestProject">
-        <activity android:name=".Search"></activity>
+        <activity android:name=".Settings"></activity>
+        <activity android:name=".Profile" />
+        <activity android:name=".Search" />
         <activity android:name=".Basket" />
         <activity android:name=".VerifyOTP" />
         <activity android:name=".RewardsAdmin" />
@@ -29,7 +31,7 @@
         <activity android:name=".BookDetails" />
         <activity android:name=".UploadBooks" />
         <activity android:name=".AdminPortal" />
-        <activity android:name=".Home"></activity>
+        <activity android:name=".Home" />
         <activity android:name=".Signup" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity">

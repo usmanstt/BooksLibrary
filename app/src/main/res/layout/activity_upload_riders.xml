@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,21 +7,71 @@
     tools:context=".UploadRiders"
     android:background="@color/white">
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="@dimen/_15sdp"
-        android:fontFamily="@font/bebasneueregular"
-        android:text="Add Rider"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_25ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/wh"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/riderFullName"
-        android:layout_marginTop="@dimen/_50sdp"/>
+        android:id="@+id/linear3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="@dimen/_15sdp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:id="@+id/backBtn"
+                    android:elevation="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/Books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Riders"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    android:layout_toRightOf="@id/search"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    />
+
+
+
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/linear3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
 
     <EditText
         android:layout_width="match_parent"
@@ -68,7 +118,7 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginRight="@dimen/_50sdp"
         android:layout_marginLeft="@dimen/_50sdp"
-
+        android:layout_marginTop="@dimen/_20sdp"
         android:hint="Enter CNIC"
         android:inputType="text"
         android:background="@drawable/circle"
@@ -88,6 +138,7 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginRight="@dimen/_50sdp"
         android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:hint="Enter Email"
         android:inputType="text"
         android:background="@drawable/circle"
@@ -107,7 +158,7 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,6 +166,8 @@
         android:layout_marginBottom="@dimen/_150sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:backgroundTint="@color/teal_200"
+        android:layout_marginLeft="@dimen/_70sdp"
+        android:layout_marginRight="@dimen/_70sdp"
         android:text="Add"
         android:textColor="@color/white"
         android:elevation="@dimen/_5sdp"
@@ -142,6 +195,10 @@
         android:elevation="@dimen/_5sdp"
         />
 
+    </LinearLayout>
+
+    </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

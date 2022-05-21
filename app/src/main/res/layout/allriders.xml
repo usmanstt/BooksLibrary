@@ -2,18 +2,20 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_act"
     android:orientation="horizontal"
-    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/background"
     android:id="@+id/ariderLay"
     android:clickable="true"
+    android:layout_margin="@dimen/_10sdp"
+    android:elevation="@dimen/_10sdp"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="@dimen/_10sdp">
+        android:layout_margin="@dimen/_10sdp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,15 +23,9 @@
             android:text="Rider Name"
             android:textSize="@dimen/_15ssp"
             android:textColor="@color/black"
-            android:id="@+id/riderName"/>
+            android:id="@+id/riderName"
+            android:textStyle="bold"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone#"
-            android:textSize="@dimen/_15ssp"
-            android:textColor="@color/black"
-            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,25 +37,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email:"
-            android:textSize="@dimen/_15ssp"
-            android:textColor="@color/black"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Email"
             android:textSize="@dimen/_15ssp"
             android:textColor="@color/black"
             android:id="@+id/riderEmail"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CNIC#"
-            android:textSize="@dimen/_15ssp"
-            android:textColor="@color/black"
             />
 
         <TextView
@@ -71,13 +52,18 @@
             android:id="@+id/riderCNIC"
             />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete"
+            android:layout_marginRight="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:backgroundTint="@color/green"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Delete"
+            />
+
     </LinearLayout>
 
 
-
-
 </LinearLayout>
-
-
-
-

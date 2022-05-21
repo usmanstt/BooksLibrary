@@ -12,6 +12,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -21,7 +22,7 @@ class AllBooksAdmin : AppCompatActivity(), BookInterfaceAdmin {
     private lateinit var booksList: ArrayList<BooksModel>
     private lateinit var recyclerView: RecyclerView
     private lateinit var booksAdapter: BooksAdapterAdmin
-    private lateinit var btnAllbooks: Button
+    private lateinit var btnAllbooks: FloatingActionButton
     lateinit var backBtn: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,21 +30,28 @@ class AllBooksAdmin : AppCompatActivity(), BookInterfaceAdmin {
         setContentView(R.layout.activity_all_books_admin)
 
         recyclerView = findViewById(R.id.booksRecycler)
-        recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
         btnAllbooks = findViewById(R.id.bookADD)
-        backBtn = findViewById(R.id.text)
+        backBtn = findViewById(R.id.backBtn)
 
         booksList = ArrayList()
         booksAdapter = BooksAdapterAdmin(booksList, applicationContext, this)
 
         btnAllbooks.setOnClickListener {
             startActivity(Intent(applicationContext, UploadBooks::class.java))
+            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
         }
 
         backBtn.setOnClickListener {
-            finish()
+//            finish()
+            val intent = Intent(applicationContext, AdminPortal::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
         }
 
         loadBooks()
@@ -70,7 +78,9 @@ class AllBooksAdmin : AppCompatActivity(), BookInterfaceAdmin {
                             //getting product object from json array
                             val books = array.getJSONObject(i)
                             var imageFront = books.getString("imageFront")
+                            var imageBack = books.getString("imageBack")
                             var url = "https://usmansorion.000webhostapp.com/front_cover/"+imageFront
+                            var urlBack = "https://usmansorion.000webhostapp.com/back_cover/" + imageBack
 
 
                             //adding the product to product list
@@ -83,7 +93,7 @@ class AllBooksAdmin : AppCompatActivity(), BookInterfaceAdmin {
                                     books.getString("book_level"),
                                     books.getString("author"),
                                     books.getString("publisher"),
-                                    books.getString("imageBack"),
+                                    urlBack,
                                     url,
                                     books.getString("rating"),
                                     books.getString("loan_status")

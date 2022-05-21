@@ -14,11 +14,12 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONException
 
 class AllRiders : AppCompatActivity(), RiderInterface {
-    lateinit var add: Button
+    lateinit var add: FloatingActionButton
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: RiderAdapter
     lateinit var riderList: ArrayList<RiderModel>
@@ -33,13 +34,17 @@ class AllRiders : AppCompatActivity(), RiderInterface {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        backBtn = findViewById(R.id.text)
+        backBtn = findViewById(R.id.backBtn)
 
         backBtn.setOnClickListener {
-            finish()
+            val intent = Intent(applicationContext, AdminPortal::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
         }
 
-        Toast.makeText(applicationContext, "Click on the item to delete!", Toast.LENGTH_LONG).show()
 
         riderList = ArrayList()
 

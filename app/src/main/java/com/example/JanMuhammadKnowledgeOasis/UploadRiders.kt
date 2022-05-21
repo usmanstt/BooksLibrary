@@ -1,10 +1,12 @@
 package com.example.JanMuhammadKnowledgeOasis
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
@@ -19,6 +21,7 @@ class UploadRiders : AppCompatActivity() {
     lateinit var riderPhone: EditText
     lateinit var riderEmail: EditText
     lateinit var addBtn: Button
+    lateinit var backBtn: ImageView
     private lateinit var progressCircula: ProgressCircula
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,16 @@ class UploadRiders : AppCompatActivity() {
         riderPhone = findViewById(R.id.riderPhone)
         riderEmail = findViewById(R.id.riderEmail)
         addBtn = findViewById(R.id.btnAdd)
+        backBtn = findViewById(R.id.backBtn)
+
+        backBtn.setOnClickListener {
+            val intent = Intent(applicationContext, AllRiders::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
+        }
 
         progressCircula = findViewById(R.id.progress)
         progressCircula.visibility = View.GONE

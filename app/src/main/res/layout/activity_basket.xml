@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Basket"
+    android:background="@color/wh">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/wh"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/linear3"
+        app:layout_constraintBottom_toTopOf="@id/linear3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="@dimen/_15sdp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/Books"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Books Cart"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_17ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.085"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:elevation="@dimen/_15sdp"
+                android:layout_gravity="center_vertical"/>
+
+
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/ic_baseline_search_24"
+                android:layout_alignParentRight="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_60sdp"
+                android:layout_toLeftOf="@id/profile"
+                android:id="@+id/search"
+                android:elevation="@dimen/_10sdp"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/ic_baseline_home_24"
+                android:layout_alignParentRight="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_90sdp"
+                android:layout_toLeftOf="@id/profile"
+                android:id="@+id/home"
+                android:elevation="@dimen/_10sdp"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/ic_baseline_person_24"
+                android:layout_alignParentRight="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:id="@+id/profile"
+                android:elevation="@dimen/_10sdp"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/ic_baseline_shopping_cart_24"
+                android:layout_alignParentRight="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_toLeftOf="@id/search"
+                android:id="@+id/basket"
+                />
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@id/linear3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear3"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/booksRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            tools:listitem="@layout/cart_books"/>
+
+
+    </RelativeLayout>
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:id="@+id/lin"-->
+<!--        android:layout_below="@id/linear"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="@dimen/_10sdp">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/checkOutBtn"-->
+<!--            android:layout_width="@dimen/_200sdp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/teal_200"-->
+<!--            android:text="Check Out"-->
+<!--            android:layout_marginTop="@dimen/_5sdp"-->
+<!--            android:textColor="@color/white"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.498"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            />-->
+
+
+<!--    </RelativeLayout>-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_20sdp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_check_24"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:id="@+id/checkOutBtn"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="No Book in Cart!"
+        android:elevation="@dimen/_20sdp"
+        android:textSize="@dimen/_20ssp"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/linear3"
+        android:paddingTop="@dimen/_20sdp"
+        android:paddingLeft="@dimen/_20sdp"
+        android:visibility="gone"
+        android:id="@+id/textIn"
+        />
+
+
+</RelativeLayout>
