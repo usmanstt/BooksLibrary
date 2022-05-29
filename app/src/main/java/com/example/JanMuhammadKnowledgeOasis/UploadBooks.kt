@@ -16,12 +16,15 @@ import com.android.volley.*
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.hmomeni.progresscircula.ProgressCircula
+import org.json.JSONArray
+import org.json.JSONException
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class UploadBooks : AppCompatActivity() {
+    private val URL_PRODUCTS = "https://usmansorion.000webhostapp.com/fetchBooks.php"
     private lateinit var bNameET: EditText
     private lateinit var bRefernceNumber: EditText
     private lateinit var spinnerBookType: Spinner
@@ -41,6 +44,8 @@ class UploadBooks : AppCompatActivity() {
     var cEncoded: String = ""
     private lateinit var fEncoded: String
     var ref: String = ""
+    lateinit var refNums: ArrayList<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_books)
@@ -56,8 +61,10 @@ class UploadBooks : AppCompatActivity() {
         val fronCover: Button = findViewById(R.id.frontcover)
         val backCover: Button = findViewById(R.id.backcover)
         val contentCover: Button = findViewById(R.id.contentCover)
+
 //        val submitInfo: Button = findViewById(R.id.submitBookInfo)
         fEncoded = ""
+        refNums = ArrayList()
 
         btnBack.setOnClickListener {
             val intent = Intent(applicationContext, AllBooksAdmin::class.java)
@@ -102,58 +109,68 @@ class UploadBooks : AppCompatActivity() {
             startActivityForResult(openGallery, 1002)
         }
 
+        loadBooks()
+
         btnUpload.setOnClickListener {
 
             if (bNameET.text.toString().isEmpty()){
                 bNameET.setError("Please enter book name!")
             }
             else if(bRefernceNumber.text.toString().isEmpty()) {
-                bRefernceNumber.setError("Please enter refernce number!")
+                bRefernceNumber.setError("Please enter reference number!")
+            }
+            else if (refNums.contains(bRefernceNumber.text.toString().trim())){
+                bRefernceNumber.setError("Please use a different reference number!")
             }
             else {
-
-//                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-//                val factory: LayoutInflater = LayoutInflater.from(this)
-//                val view: View = factory.inflate(R.layout.dialogadminbookcover, null);
-//                builder.setView(view)
-//
-//                val alertDialog = builder.create()
-//                alertDialog.show()
-//
-//                val fronCover: Button = view.findViewById(R.id.frontcover)
-//                val backCover: Button = view.findViewById(R.id.backcover)
-//                val contentCover: Button = view.findViewById(R.id.contentCover)
-//                val submitInfo: Button = view.findViewById(R.id.submitBookInfo)
-//
-//
-//
-//
-//                fronCover.setOnClickListener {
-//                    val openGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//                    startActivityForResult(openGallery, 1000)
-//
-//                }
-//
-//                backCover.setOnClickListener {
-//                    val openGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//                    startActivityForResult(openGallery, 1001)
-//                }
-//
-//                contentCover.setOnClickListener {
-//                    val openGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//                    startActivityForResult(openGallery, 1002)
-//                }
-//                submitInfo.setOnClickListener {
-//                uploadBack(bEncoded)
-//                uploadFront(fEncoded)
-//                    progressCircula.visibility = View.VISIBLE
-//                    alertDialog.dismiss()
-                    uploadInfo()
-//                }
+                uploadInfo()
             }
         }
 
     }
+
+    private fun loadBooks() {
+        var stringRequest: StringRequest = object : StringRequest(Request.Method.GET,
+            URL_PRODUCTS,
+            object : Response.Listener<String> {
+                override fun onResponse(response: String?) {
+                    try {
+                        //converting the string to json array object
+                        val array = JSONArray(response)
+                        //traversing through all the object
+                        for (i in 0 until array.length()) {
+
+                            //getting product object from json array
+                            val books = array.getJSONObject(i)
+                            var imageFront = books.getString("imageFront")
+                            var imageBack = books.getString("imageBack")
+                            var url =
+                                "https://usmansorion.000webhostapp.com/front_cover/" + imageFront
+                            var urlBack = "https://usmansorion.000webhostapp.com/back_cover/" + imageBack
+
+
+                            //adding the product to product list
+                            refNums.add(
+                                    books.getString("ref_number")
+                            )
+                        }
+
+
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+
+            },
+            Response.ErrorListener {
+
+            }){
+
+        }
+        var req: RequestQueue = Volley.newRequestQueue(applicationContext)
+        req.add(stringRequest)
+    }
+
 
     private fun uploadInfo() {
         ref = bRefernceNumber.text.toString().trim()

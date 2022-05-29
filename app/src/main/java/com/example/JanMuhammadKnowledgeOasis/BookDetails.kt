@@ -1,26 +1,35 @@
 package com.example.JanMuhammadKnowledgeOasis
 
-import android.content.Intent
+import android.R.attr.bitmap
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import android.os.Bundle
+import android.util.Base64.DEFAULT
+import android.util.Base64.encodeToString
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import com.android.volley.AuthFailureError
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
+import io.paperdb.Paper
 import org.json.JSONArray
 import org.json.JSONException
-import java.lang.Exception
+import java.io.ByteArrayOutputStream
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class BookDetails : AppCompatActivity() {
     private lateinit var back: ImageView
@@ -34,6 +43,9 @@ class BookDetails : AppCompatActivity() {
     var check: Boolean = true
     private lateinit var backBtn: ImageView
     var id: Int? = null
+    lateinit var imageFCart: Bitmap
+    var imageString = ""
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
@@ -43,6 +55,7 @@ class BookDetails : AppCompatActivity() {
         btnAddtoCart = findViewById(R.id.btnAddCart)
         btnCheckContent = findViewById(R.id.btnCheckContent)
 
+        Paper.init(this)
 
 
         cartList = ArrayList()
@@ -115,6 +128,7 @@ class BookDetails : AppCompatActivity() {
             finish()
         }
 
+
         if (shp == null) shp = getSharedPreferences("myPreferences", MODE_PRIVATE)
             var userName = shp!!.getString("name", "") as String
 
@@ -139,6 +153,8 @@ class BookDetails : AppCompatActivity() {
         loadBooksInCart()
         fetchUserID()
 
+
+
         btnAddtoCart.setOnClickListener {
             if (shp == null){
                 shp = getSharedPreferences("myPreferences", MODE_PRIVATE)
@@ -147,71 +163,103 @@ class BookDetails : AppCompatActivity() {
 
             val u: String = shp!!.getString("name", "") as String
 
-            if (u != null && u != "") {
-//                Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show()
-                if (status == "Available") {
-                    val myReq: StringRequest = object : StringRequest(Method.POST,
-                            "https://usmansorion.000webhostapp.com/insertCart.php",
-                            object : Response.Listener<String> {
-                                override fun onResponse(response: String?) {
-                                    Toast.makeText(applicationContext, response, Toast.LENGTH_LONG).show()
-                                }
+//            if (u != null && u != "") {
+////                Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show()
+//                if (status == "Available") {
+//                    val myReq: StringRequest = object : StringRequest(Method.POST,
+//                            "https://usmansorion.000webhostapp.com/insertCart.php",
+//                            object : Response.Listener<String> {
+//                                override fun onResponse(response: String?) {
+//                                    Toast.makeText(applicationContext, response, Toast.LENGTH_LONG).show()
+//                                }
+//
+//                            },
+//                            Response.ErrorListener {
+//                                Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
+//                            }) {
+//                        @Throws(AuthFailureError::class)
+//                        override fun getParams(): Map<String, String>? {
+//                            val params: MutableMap<String, String> = HashMap()
+//                            params["book_name"] = book.toString()
+//                            params["ref_number"] = ref.toString()
+//                            params["buyer"] = userName.toString()
+//                            params["imageFront"] = fronturl.toString()
+//                            params["userID"] = id.toString()
+//                            params["book_type"] = type.toString()
+//
+//
+////                    params["image_linkB"] = bEncoded.toString()
+////                    params["image_link"] = fEncoded.toString()
+////                    params["rating"] = "0"
+////                    params["quantity"] = quan.text.toString().trim()
+//                            return params
+//                        }
+//                    }
+//
+//
+//                    var x: Int = 0
+//                    while (x < cartList.size) {
+//                        if (cartList[x].buyer.toString().equals(userName) && cartList[x].ref_number.toString().equals(ref.toString())) {
+//                            check = false
+//                            break
+//                        } else {
+//                            check = true
+//                        }
+//                        x = x + 1
+//                    }
+//
+//                    if (!check) {
+//                        Toast.makeText(applicationContext, "Book already added!", Toast.LENGTH_LONG).show()
+//                    } else if (check) {
+//                        var req: RequestQueue = Volley.newRequestQueue(applicationContext)
+//                        req.add(myReq)
+//                    }
+//
+//                }
+//                else{
+//                    Toast.makeText(applicationContext, "Book not available at the moment", Toast.LENGTH_LONG).show()
+//                }
+//            } else {
+//                Toast.makeText(applicationContext, "Please Log in/Sign up to borrow the books.", Toast.LENGTH_LONG).show()
+//                val intent = Intent(this, Login::class.java)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                startActivity(intent)
+//                overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
+//            }
 
-                            },
-                            Response.ErrorListener {
-                                Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
-                            }) {
-                        @Throws(AuthFailureError::class)
-                        override fun getParams(): Map<String, String>? {
-                            val params: MutableMap<String, String> = HashMap()
-                            params["book_name"] = book.toString()
-                            params["ref_number"] = ref.toString()
-                            params["buyer"] = userName.toString()
-                            params["imageFront"] = fronturl.toString()
-                            params["userID"] = id.toString()
-                            params["book_type"] = type.toString()
-
-
-//                    params["image_linkB"] = bEncoded.toString()
-//                    params["image_link"] = fEncoded.toString()
-//                    params["rating"] = "0"
-//                    params["quantity"] = quan.text.toString().trim()
-                            return params
+            var list: ArrayList<CartItemsModel>? = ArrayList()
+            if (Paper.book().contains("cartItems")){
+                list = Paper.book().read<ArrayList<CartItemsModel>>("cartItems")
+                if (list!!.isNotEmpty()){
+                    for (i in 0..list.size - 1){
+                        if (list[i].book_name == book.toString()){
+                            Toast.makeText(applicationContext, "Book Already Added In The Cart!", Toast.LENGTH_LONG).show()
+                        }
+                        else{
+                            val cartItems: CartItemsModel = CartItemsModel(id,book.toString(),ref.toString(),userName.toString(),fronturl.toString(),type.toString())
+                            list.add(cartItems)
+                            Paper.book().write("cartItems", list)
+                            Toast.makeText(applicationContext, "Added to the basket!", Toast.LENGTH_LONG).show()
                         }
                     }
-
-
-                    var x: Int = 0
-                    while (x < cartList.size) {
-                        if (cartList[x].buyer.toString().equals(userName) && cartList[x].ref_number.toString().equals(ref.toString())) {
-                            check = false
-                            break
-                        } else {
-                            check = true
-                        }
-                        x = x + 1
-                    }
-
-                    if (!check) {
-                        Toast.makeText(applicationContext, "Book already added!", Toast.LENGTH_LONG).show()
-                    } else if (check) {
-                        var req: RequestQueue = Volley.newRequestQueue(applicationContext)
-                        req.add(myReq)
-                    }
-
                 }
-                else{
-                    Toast.makeText(applicationContext, "Book not available at the moment", Toast.LENGTH_LONG).show()
-                }
-            } else {
-                Toast.makeText(applicationContext, "Please Log in/Sign up to borrow the books.", Toast.LENGTH_LONG).show()
-                val intent = Intent(this, Login::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
+
+//            Paper.book().destroy()
             }
+            else if (status.toString() == "Loaned"){
+                Toast.makeText(applicationContext, "Book Not Available!", Toast.LENGTH_LONG).show()
+            }
+            else {
+                val cartItems: CartItemsModel = CartItemsModel(id,book.toString(),ref.toString(),userName.toString(),fronturl.toString(),type.toString())
+                list!!.add(cartItems)
+                Paper.book().write("cartItems", list)
+                Toast.makeText(applicationContext, "Added to the basket!", Toast.LENGTH_LONG).show()
+            }
+
+
+
 
         }
 
@@ -235,7 +283,7 @@ class BookDetails : AppCompatActivity() {
 
                                 val user = array.getJSONObject(i)
 
-                                if (user.getString("username") == userName){
+                                if (user.getString("username") == userName) {
                                     id = user.getInt("id")
                                 }
                             }

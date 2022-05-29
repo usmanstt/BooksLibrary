@@ -501,6 +501,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
             req.add(stringRequest)
 
             btnsub.setOnClickListener {
+                Toast.makeText(applicationContext, "Assigning Rider, Please Wait...", Toast.LENGTH_LONG).show()
                 var rider = spinnerRid.selectedItem.toString()
                 val myReq2: StringRequest = object : StringRequest(Method.POST,
                         "https://usmansorion.000webhostapp.com/updateRider.php",
@@ -508,11 +509,12 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
                             override fun onResponse(response: String?) {
                                 val myReq: StringRequest = object : StringRequest(
                                         Method.POST,
-                                        "https://www.hajanaone.com/api/sendsms.php?apikey=UAbQCTmSZbAAMclGKcLH&phone=${currentItem.contact_num.toString()}&sender=SmartSMS&message=Your%20Order%20Number%20$ordernum%20has%20been%20assigned%20to%20$rider%20.Your%20order%20will%20reach%20you%soon.Message%20from%20Jan%20Muhammad%20Knowledge%20Oasis.",
+                                        "https://www.hajanaone.com/api/sendsms.php?apikey=UAbQCTmSZbAAMclGKcLH&phone=${currentItem.contact_num.toString()}&sender=SmartSMS&message=Your%20Order%20Number%20$ordernum%20has%20been%20assigned%20to%20$rider%20.Your%20order%20will%20reach%20you%20soon.Message%20from%20Jan%20Muhammad%20Knowledge%20Oasis.",
                                         object : Response.Listener<String> {
                                             override fun onResponse(response: String?) {
                                                 Toast.makeText(applicationContext, response.toString(), Toast.LENGTH_LONG).show()
                                                 alertDialog1.dismiss()
+                                                alertDialog.dismiss()
                                             }
                                         },
                                         Response.ErrorListener {
@@ -538,11 +540,12 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
                         // manipulate date
 
                         // manipulate date
-                        var year: String = Calendar.YEAR.toString()
-                        var month: String = Calendar.MONTH.toString()
-                        var day: String = c.add(Calendar.DATE, 2).toString() //same with c.add(Calendar.DAY_OF_MONTH, 1);
+                        var year: String = c.get(Calendar.YEAR).toString()
+                        var month: String = c.get(Calendar.MONTH).toString()
+                        var day: String = c.get(Calendar.DAY_OF_MONTH).toString()
+                        var m = month.toInt() + 1
 
-                        params["expected_delDate"] = day + " " + month + " " + year
+                        params["expected_delDate"] = day + "-" + m.toString() + "-" + year
                         return params
                     }
                 }

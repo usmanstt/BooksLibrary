@@ -290,7 +290,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@id/layout3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -298,6 +298,7 @@
         android:gravity="center"
         android:layout_marginTop="@dimen/_15sdp"
         android:padding="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         >
 
         <androidx.appcompat.widget.AppCompatButton
@@ -309,11 +310,8 @@
             android:text="Add to Basket"
             android:textColor="@color/white"
             android:layout_marginRight="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnCheckContent"
-            app:layout_constraintHorizontal_bias="0.15"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_toLeftOf="@id/btnCheckContent"
+            android:layout_marginBottom="@dimen/_10sdp"
             />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -324,6 +322,7 @@
             android:background="@drawable/button_bg"
             app:layout_constraintStart_toEndOf="@id/btnAddCart"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:text="Check Content"
             app:layout_constraintBottom_toBottomOf="parent"
             />

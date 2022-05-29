@@ -471,6 +471,9 @@ class Profile : AppCompatActivity(), AllOrdersInterface {
                     fetchOrders()
                     updateAllbooks(currentItem.ref_number.toString(), rate.text.toString().trim())
                 }
+                else if (yes == true && no == false && rate.text.toString().trim().toInt() > 10){
+                    Toast.makeText(applicationContext, "Rating can't be greater than 10", Toast.LENGTH_LONG).show()
+                }
 
             }
         }

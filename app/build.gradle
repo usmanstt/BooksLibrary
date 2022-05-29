@@ -55,5 +55,7 @@ dependencies {
     implementation 'com.hmomeni.progresscircula:progresscircula:0.2.1'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'io.github.pilgr:paperdb:2.7.2'
+    implementation 'com.google.code.gson:gson:2.8.8'
 
 }

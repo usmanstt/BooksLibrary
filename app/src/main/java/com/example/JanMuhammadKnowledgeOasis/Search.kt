@@ -57,36 +57,36 @@ class Search : AppCompatActivity(), BookInterface {
         userName = shp!!.getString("name", "") as String
 
         basketbtn.setOnClickListener {
-            if (userName.isEmpty()){
-                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-                val factory: LayoutInflater = LayoutInflater.from(this)
-                val view: View = factory.inflate(R.layout.dialoglogin, null);
-                builder.setView(view)
-
-                val alertDialog = builder.create()
-                alertDialog.show()
-
-                val Lt = view.findViewById<TextView>(R.id.loginT)
-                val St = view.findViewById<TextView>(R.id.signupT)
-
-                Lt.setOnClickListener {
-                    val intent = Intent(applicationContext, Login::class.java)
-                    startActivity(intent)
-                }
-
-                St.setOnClickListener {
-                    val intent = Intent(applicationContext, Signup::class.java)
-                    startActivity(intent)
-                }
-            }
-            else {
+//            if (userName.isEmpty()){
+//                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+//                val factory: LayoutInflater = LayoutInflater.from(this)
+//                val view: View = factory.inflate(R.layout.dialoglogin, null);
+//                builder.setView(view)
+//
+//                val alertDialog = builder.create()
+//                alertDialog.show()
+//
+//                val Lt = view.findViewById<TextView>(R.id.loginT)
+//                val St = view.findViewById<TextView>(R.id.signupT)
+//
+//                Lt.setOnClickListener {
+//                    val intent = Intent(applicationContext, Login::class.java)
+//                    startActivity(intent)
+//                }
+//
+//                St.setOnClickListener {
+//                    val intent = Intent(applicationContext, Signup::class.java)
+//                    startActivity(intent)
+//                }
+//            }
+//            else {
                 val intent = Intent(applicationContext, Basket::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);
-            }
+//            }
         }
         homebtn.setOnClickListener {
             val intent = Intent(applicationContext, Home::class.java)

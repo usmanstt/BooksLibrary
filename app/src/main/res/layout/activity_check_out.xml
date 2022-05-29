@@ -157,16 +157,12 @@
         android:layout_height="wrap_content"
         android:buttonTint="@drawable/checkbox_tint"
         android:layout_below="@id/orderNumber"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/orderNumber"
         android:text="Request Delivery"
         android:layout_marginTop="@dimen/_10sdp"
         android:textSize="@dimen/_15ssp"
-        android:layout_marginLeft="@dimen/_20sdp"
         android:id="@+id/deliveryCheck"
-        app:layout_constraintBottom_toTopOf="@id/addressL"
+        android:layout_gravity="start"
+        android:layout_marginLeft="@dimen/_20sdp"
         />
 
 

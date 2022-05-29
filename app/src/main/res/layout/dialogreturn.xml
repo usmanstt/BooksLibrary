@@ -63,12 +63,13 @@
         <EditText
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_30sdp"
-            android:buttonTint="@drawable/checkbox_tint"
             android:background="@drawable/circle"
             android:textSize="@dimen/_15ssp"
             android:id="@+id/rating"
             android:inputType="number"
             android:singleLine="true"
+            android:paddingLeft="@dimen/_5sdp"
+            android:maxLength="2"
             />
 
         <TextView
