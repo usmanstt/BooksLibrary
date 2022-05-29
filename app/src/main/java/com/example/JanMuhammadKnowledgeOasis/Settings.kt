@@ -132,6 +132,69 @@ class Settings : AppCompatActivity() {
 
         }
 
+        changeUPass.setOnClickListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            val factory: LayoutInflater = LayoutInflater.from(this)
+            val view: View = factory.inflate(R.layout.dialogchangepassword, null);
+            builder.setView(view)
+
+            val alertDialog = builder.create()
+            alertDialog.show()
+
+            val orgPass: EditText = view.findViewById(R.id.it)
+            val newpass1: EditText = view.findViewById(R.id.newPass1)
+            val newpass2: EditText = view.findViewById(R.id.newPass2)
+            val change: Button = view.findViewById(R.id.btnChangeP)
+
+            orgPass.setText(password)
+
+
+            change.setOnClickListener {
+                var newpassword1: String = newpass1.text.toString().trim()
+                var newpassword2: String = newpass2.text.toString().trim()
+
+                if (newpassword1.equals(newpassword2) && newpassword1.length >= 8){
+                    val myReq: StringRequest = object : StringRequest(Method.POST,
+                            "https://usmansorion.000webhostapp.com/updatePassword.php",
+                            object : Response.Listener<String> {
+                                override fun onResponse(response: String?) {
+                                    Toast.makeText(applicationContext, "Password Changed, " + "Please log In again!", Toast.LENGTH_LONG).show()
+                                    try {
+                                        if (shp == null) shp = applicationContext.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
+                                        var shpEditor: SharedPreferences.Editor = shp!!.edit()
+                                        shpEditor.putString("name", "")
+                                        shpEditor.commit()
+                                        val i = Intent(applicationContext, Login::class.java)
+                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                        startActivity(i)
+                                        finish()
+                                    } catch (ex: Exception) {
+                                        Toast.makeText(applicationContext, ex.message.toString(), Toast.LENGTH_LONG).show()
+                                    }
+                                    alertDialog.dismiss()
+                                }
+
+                            },
+                            Response.ErrorListener {
+                                Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()
+                                alertDialog.dismiss()
+                            }) {
+                        @Throws(AuthFailureError::class)
+                        override fun getParams(): Map<String, String>? {
+                            val params: MutableMap<String, String> = HashMap()
+                            params["password"] = newpassword1
+                            params["username"] = uname
+                            return params
+                        }
+                    }
+
+                    var req: RequestQueue = Volley.newRequestQueue(this)
+                    req.add(myReq)
+                }
+            }
+
+        }
+
     }
     private fun fetchRegisteredUsers() {
         usernames = ArrayList()
