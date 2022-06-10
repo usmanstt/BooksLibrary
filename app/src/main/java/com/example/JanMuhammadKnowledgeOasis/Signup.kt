@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -22,7 +23,7 @@ import kotlin.collections.set
 class Signup : AppCompatActivity() {
 
     private lateinit var loginText: TextView
-    private lateinit var btnSignUp: Button
+    private lateinit var btnSignUp: AppCompatButton
     private lateinit var username: EditText
     private lateinit var email: EditText
     private lateinit var phone: EditText

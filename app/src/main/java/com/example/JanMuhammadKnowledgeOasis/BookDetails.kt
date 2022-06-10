@@ -3,7 +3,9 @@ package com.example.JanMuhammadKnowledgeOasis
 import android.R.attr.bitmap
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Base64.DEFAULT
@@ -77,7 +79,8 @@ class BookDetails : AppCompatActivity() {
         backBtn = findViewById(R.id.backBtn)
 
         btnCheckContent.setOnClickListener {
-            if (imageContent.toString().isNotEmpty()){
+            Toast.makeText(applicationContext,imageContent,Toast.LENGTH_LONG).show()
+            if (imageContent != ""){
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                 val factory: LayoutInflater = LayoutInflater.from(this)
                 val view: View = factory.inflate(R.layout.contentdialog, null);
@@ -88,6 +91,7 @@ class BookDetails : AppCompatActivity() {
 
                 val alertDialog = builder.create()
                 alertDialog.show()
+                alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
                 try {
                     Glide.with(applicationContext).load(imageContent).into(image)
@@ -149,6 +153,13 @@ class BookDetails : AppCompatActivity() {
 
         var quantityN = findViewById<TextView>(R.id.quantity)
         quantityN.setText(status.toString())
+
+        if (status == "Loaned"){
+            quantityN.setTextColor(Color.parseColor("#fb4848"))
+        }
+        else{
+            quantityN.setTextColor(Color.parseColor("#2E8B57"))
+        }
 
         loadBooksInCart()
         fetchUserID()
@@ -230,33 +241,43 @@ class BookDetails : AppCompatActivity() {
 //            }
 
             var list: ArrayList<CartItemsModel>? = ArrayList()
-            if (Paper.book().contains("cartItems")){
+            var lisnames: ArrayList<String> = ArrayList()
+            if (Paper.book().contains("cartItems")) {
                 list = Paper.book().read<ArrayList<CartItemsModel>>("cartItems")
-                if (list!!.isNotEmpty()){
-                    for (i in 0..list.size - 1){
-                        if (list[i].book_name == book.toString()){
+            }
+            if (list!!.isNotEmpty()) {
+                for (h in 0..list!!.size - 1) {
+                    lisnames.add(list[h].book_name.toString())
+                }
+            }
+                if (lisnames!!.isNotEmpty()){
+                        if (lisnames.contains(book.toString())){
                             Toast.makeText(applicationContext, "Book Already Added In The Cart!", Toast.LENGTH_LONG).show()
                         }
-                        else{
+                        else if(status == "Loaned"){
+                            Toast.makeText(applicationContext, "Book Not Available!", Toast.LENGTH_LONG).show()
+                        }
+                        else {
                             val cartItems: CartItemsModel = CartItemsModel(id,book.toString(),ref.toString(),userName.toString(),fronturl.toString(),type.toString())
                             list.add(cartItems)
                             Paper.book().write("cartItems", list)
                             Toast.makeText(applicationContext, "Added to the basket!", Toast.LENGTH_LONG).show()
                         }
-                    }
                 }
 
 //            Paper.book().destroy()
-            }
-            else if (status.toString() == "Loaned"){
-                Toast.makeText(applicationContext, "Book Not Available!", Toast.LENGTH_LONG).show()
-            }
-            else {
+
+            if (status.toString() != "Loaned" && !Paper.book().contains("cartItems")){
                 val cartItems: CartItemsModel = CartItemsModel(id,book.toString(),ref.toString(),userName.toString(),fronturl.toString(),type.toString())
-                list!!.add(cartItems)
+                list.add(cartItems)
                 Paper.book().write("cartItems", list)
                 Toast.makeText(applicationContext, "Added to the basket!", Toast.LENGTH_LONG).show()
             }
+            else if (status == "Loaned"){
+                Toast.makeText(applicationContext, "Book Not Available!", Toast.LENGTH_LONG).show()
+            }
+
+//            Toast.makeText(applicationContext, list.size.toString(),Toast.LENGTH_LONG).show()
 
 
 

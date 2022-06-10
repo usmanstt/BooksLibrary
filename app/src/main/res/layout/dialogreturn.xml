@@ -2,19 +2,21 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/bg"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="@dimen/_20ssp">
+    android:padding="@dimen/_20ssp"
+    android:elevation="@dimen/_10sdp"
+    >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Return Book?"
-        android:textSize="@dimen/_25ssp"
-        android:fontFamily="@font/bebasneueregular"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
         android:textColor="@color/black"
-        android:paddingBottom="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_10sdp"
         />
 
     <LinearLayout
@@ -63,7 +65,7 @@
         <EditText
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/circle"
+            android:background="@drawable/background_act"
             android:textSize="@dimen/_15ssp"
             android:id="@+id/rating"
             android:inputType="number"

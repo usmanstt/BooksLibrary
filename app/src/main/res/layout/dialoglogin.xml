@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg"
+    android:elevation="@dimen/_10sdp"
+    >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
     <ImageView
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
@@ -20,10 +29,9 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:elevation="@dimen/_15sdp"
         android:layout_below="@id/image"
-        android:fontFamily="@font/bebasneueregular"
         android:text="You're not logged in.\nPlease Login to access this page."
         android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_15ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,11 +44,12 @@
         android:id="@+id/loginT"
         android:text="Login"
         android:elevation="@dimen/_15sdp"
-        android:fontFamily="@font/bebasneueregular"
         android:textColor="@color/green"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_15ssp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_10sdp"/>
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawableLeft="@drawable/ic_baseline_login_24"
+        android:drawablePadding="@dimen/_10sdp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,11 +58,15 @@
         android:id="@+id/signupT"
         android:text="Sign Up"
         android:elevation="@dimen/_15sdp"
-        android:fontFamily="@font/bebasneueregular"
         android:textColor="@color/green"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_15ssp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_20sdp"/>
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:drawableLeft="@drawable/ic_baseline_person_add_alt_1_24"
+        android:drawablePadding="@dimen/_10sdp"/>
 
-</RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

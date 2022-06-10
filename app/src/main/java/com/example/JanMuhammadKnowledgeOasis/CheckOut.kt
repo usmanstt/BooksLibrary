@@ -1,6 +1,8 @@
 package com.example.JanMuhammadKnowledgeOasis
 
 import android.content.*
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -102,10 +104,11 @@ class CheckOut : AppCompatActivity() {
 
                 if (txtAddress.text != addressuser){
                     alertDialog.show()
+                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 }
 
                 var streetAdd = view.findViewById<EditText>(R.id.streetAddress)
-                var btnSubmit = view.findViewById<Button>(R.id.submitAddress)
+                var btnSubmit = view.findViewById<AppCompatButton>(R.id.submitAddress)
                 var clicktext = view.findViewById<TextView>(R.id.savedAddress)
 
                 clicktext.setOnClickListener {

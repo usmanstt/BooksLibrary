@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -87,9 +90,10 @@ class PersonalInformation : AppCompatActivity() {
             builder.setView(view)
             val alertDialog = builder.create()
             alertDialog.show()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             val usernameET = view.findViewById<EditText>(R.id.it)
             val usernameChange = view.findViewById<EditText>(R.id.newUsername)
-            val submit = view.findViewById<Button>(R.id.btnChangeU)
+            val submit = view.findViewById<AppCompatButton>(R.id.btnChangeU)
 
             usernameET.setText(Name)
 
@@ -156,11 +160,12 @@ class PersonalInformation : AppCompatActivity() {
 
             val alertDialog = builder.create()
             alertDialog.show()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             val orgPass: EditText = view.findViewById(R.id.it)
             val newpass1: EditText = view.findViewById(R.id.newPass1)
             val newpass2: EditText = view.findViewById(R.id.newPass2)
-            val change: Button = view.findViewById(R.id.btnChangeP)
+            val change: AppCompatButton = view.findViewById(R.id.btnChangeP)
 
             orgPass.setText(password)
 

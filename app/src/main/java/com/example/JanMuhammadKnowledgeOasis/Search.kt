@@ -2,6 +2,8 @@ package com.example.JanMuhammadKnowledgeOasis
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -105,6 +107,7 @@ class Search : AppCompatActivity(), BookInterface {
 
                 val alertDialog = builder.create()
                 alertDialog.show()
+                alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
                 val Lt = view.findViewById<TextView>(R.id.loginT)
                 val St = view.findViewById<TextView>(R.id.signupT)

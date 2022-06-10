@@ -2,6 +2,8 @@ package com.example.JanMuhammadKnowledgeOasis
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,8 +14,6 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.AuthFailureError
@@ -22,7 +22,6 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hmomeni.progresscircula.ProgressCircula
 import io.paperdb.Paper
@@ -74,7 +73,7 @@ class Home : AppCompatActivity(), BookInterface{
             list = Paper.book().read<ArrayList<CartItemsModel>>("cartItems")
         }
 //        Paper.book().destroy()
-
+//        Toast.makeText(applicationContext,list!!.size.toString(),Toast.LENGTH_LONG).show()
 
         if (shp == null) shp = applicationContext.getSharedPreferences(
                 "myPreferences",
@@ -100,7 +99,7 @@ class Home : AppCompatActivity(), BookInterface{
         cartList = ArrayList()
         filteredlist = ArrayList()
 
-        search.addTextChangedListener(object : TextWatcher{
+        search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -133,6 +132,7 @@ class Home : AppCompatActivity(), BookInterface{
 
                 val alertDialog = builder.create()
                 alertDialog.show()
+                alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
                 val Lt = view.findViewById<TextView>(R.id.loginT)
                 val St = view.findViewById<TextView>(R.id.signupT)
@@ -228,11 +228,11 @@ class Home : AppCompatActivity(), BookInterface{
 
         fab.setOnClickListener {
             linear.visibility = View.VISIBLE
-            linear.startAnimation(AnimationUtils.loadAnimation(applicationContext,R.anim.slide_down));
+            linear.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.slide_down));
         }
 
         drop.setOnClickListener {
-            linear.startAnimation(AnimationUtils.loadAnimation(applicationContext,R.anim.slide_up));
+            linear.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.slide_up));
             linear.visibility = View.GONE
         }
 
@@ -280,7 +280,6 @@ class Home : AppCompatActivity(), BookInterface{
                             arrayOrders.clear()
 
 
-
                             //traversing through all the object
                             for (i in 0 until array.length()) {
 
@@ -295,7 +294,6 @@ class Home : AppCompatActivity(), BookInterface{
 
                             strcompare = arrayOrders.joinToString(separator = ",")
                             fetchBookType()
-
 
 
                         } catch (e: JSONException) {
@@ -325,12 +323,11 @@ class Home : AppCompatActivity(), BookInterface{
 
                                 //getting product object from json array
                                 val books = array.getJSONObject(i)
-                                if (arrayOrders.isNotEmpty()){
-                                    if (books.getString("book_type") == arrayOrders[arrayOrders.size - 1]){
+                                if (arrayOrders.isNotEmpty()) {
+                                    if (books.getString("book_type") == arrayOrders[arrayOrders.size - 1]) {
                                         booktype = books.getString("book_type").toString()
-                                    }
-                                    else{
-                                        Log.d("TAG", "TAG")
+                                    } else {
+                                        Log.d("TAG_Orders", "TAG")
                                     }
                                 }
 
@@ -394,18 +391,17 @@ class Home : AppCompatActivity(), BookInterface{
                                 )
                             }
 
-                            for (x in 0..booksList.size - 1){
-                                if (booksList[x].book_type == booktype){
+                            for (x in 0..booksList.size - 1) {
+                                if (booksList[x].book_type == booktype) {
                                     userbooksList.add(booksList[x])
                                 }
                             }
-                            if (userbooksList.isNotEmpty()){
+                            if (userbooksList.isNotEmpty()) {
                                 recyclerView2.adapter = userbooksAdapter
                                 userbooksAdapter.notifyDataSetChanged()
                                 progressCircula.visibility = View.GONE
 //                            Toast.makeText(activity, "User", Toast.LENGTH_LONG).show()
-                            }
-                            else{
+                            } else {
                                 recyclerView2.adapter = booksAdapter
                                 booksAdapter.notifyDataSetChanged()
                                 progressCircula.visibility = View.GONE
@@ -433,97 +429,160 @@ class Home : AppCompatActivity(), BookInterface{
     }
 
     private fun fetchOrderedItems() {
-
         var stringRequest: StringRequest = object : StringRequest(
-            Request.Method.GET,
-            "https://usmansorion.000webhostapp.com/fetchOrders.php",
-            object : Response.Listener<String> {
-                override fun onResponse(response: String?) {
-                    try {
-                        //converting the string to json array object
-                        val array = JSONArray(response)
-                        orderList.clear()
-                        buyers.clear()
-                        refs.clear()
+                Request.Method.GET,
+                "https://usmansorion.000webhostapp.com/fetchOrders.php",
+                object : Response.Listener<String> {
+                    override fun onResponse(response: String?) {
+                        try {
+                            //converting the string to json array object
+                            val array = JSONArray(response)
+                            orderList.clear()
+                            buyers.clear()
+                            refs.clear()
 
 
 //                        if (shp == null) shp = applicationContext?.getSharedPreferences("myPreferences", AppCompatActivity.MODE_PRIVATE)
 //                        var userName = shp!!.getString("name", "") as String
-                        //traversing through all the object
+                            //traversing through all the object
 
-                        for (i in 0 until array.length()) {
+                            for (i in 0 until array.length()) {
 
-                            //getting product object from json array
-                            val orders = array.getJSONObject(i)
+                                //getting product object from json array
+                                val orders = array.getJSONObject(i)
 
-                            //adding the product to product list
-                            orderList.add(
-                                OrderedBooks(
-                                    orders.getInt("id"),
-                                    orders.getString("book_name"),
-                                    orders.getString("ref_number"),
-                                    orders.getString("order_number"),
-                                    orders.getString("buyer"),
-                                    orders.getString("delivery_address"),
-                                    orders.getString("pick_address"),
-                                    orders.getString("delievery_boy"),
-                                    orders.getString("contact_num"),
-                                    orders.getString("expected_delDate"),
-                                    orders.getString("buyer_fullname")
+                                //adding the product to product list
+                                orderList.add(
+                                        OrderedBooks(
+                                                orders.getInt("id"),
+                                                orders.getString("book_name"),
+                                                orders.getString("ref_number"),
+                                                orders.getString("order_number"),
+                                                orders.getString("buyer"),
+                                                orders.getString("delivery_address"),
+                                                orders.getString("pick_address"),
+                                                orders.getString("delievery_boy"),
+                                                orders.getString("contact_num"),
+                                                orders.getString("expected_delDate"),
+                                                orders.getString("buyer_fullname"),
+                                                orders.getString("order_status")
+                                        )
                                 )
-                            )
-                            buyers.add(orders.getString("buyer"))
-                            refs.add(orders.getString("ref_number"))
-                        }
+                                buyers.add(orders.getString("buyer"))
+                                refs.add(orders.getString("ref_number"))
+                            }
+                            var LT: ArrayList<String> = ArrayList()
 
-                        if (list!!.isNotEmpty()){
-                            for (i in 0..list!!.size - 1){
-                                if (refs.contains(list!![i].ref_number) && buyers.contains(list!![i].buyer.toString())){
-//                                    deleteOrderedItems(i)
-                                    list!!.removeAt(i)
-                                    Paper.book().destroy()
-                                    if (list!!.isNotEmpty()){
-                                        Paper.book().write("cartItems",list!!)
-//                                        Toast.makeText(applicationContext,"Deleted!",Toast.LENGTH_LONG).show()
+
+                            //sort order_list
+                            var sortedList: ArrayList<OrderedBooks> = ArrayList()
+                            if (list!!.isNotEmpty() && refs.size != 0 && buyers.contains(userName)) {
+                                LT.clear()
+                                for (h in 0..list!!.size - 1) {
+                                    LT.add(list!![h].ref_number)
+                                }
+                                var x = 0
+                                while (x < orderList!!.size) {
+                                    if (LT!!.contains(orderList[x].ref_number) && orderList[x].order_status.toString() != "Returned" && orderList[x].buyer == userName) {
+
+                                        var index = LT.indexOf(orderList[x].ref_number.toString())
+//                                        list!!.removeAt(index)
+                                        sortedList.add(orderList[x])
+                                        Log.d("TAG_BOOK", list!!.get(index).book_name.toString())
+//                                        Paper.book().destroy()
+                                    } else {
+//                                        Log.d("TAG","TAG")
+                                        continue
                                     }
-                                    else{
-//                                        Toast.makeText(applicationContext,"Nothing to delete!",Toast.LENGTH_LONG).show()
-                                        Log.d("TAG","TAG")
+                                    x = x + 1
+                                }
+
+                                if (sortedList.isNotEmpty()) {
+//                                Toast.makeText(applicationContext,sortedList.size.toString(),Toast.LENGTH_LONG).show()
+                                    sortedList.sortByDescending {
+                                        it.book_name
+                                    }
+                                    for (i in 0..sortedList.size - 1) {
+                                        Log.d("TAG_SORT", sortedList[i].book_name)
                                     }
                                 }
-                            }
-                        }
-                        else if (list!!.isEmpty()){
+
+                                if (list!!.isNotEmpty()) {
+                                    list!!.sortByDescending {
+                                        it.book_name
+                                    }
+                                    for (i in 0..list!!.size - 1) {
+                                        Log.d("TAG_SORT_LIST", list!![i].book_name)
+                                    }
+                                }
+
+
+                                if (sortedList!!.isNotEmpty() && list!!.isNotEmpty()) {
+                                    var s = sortedList.size - 1
+                                    var i = 0
+                                    while (s >= 0) {
+                                        if (sortedList[s].book_name == list!![s].book_name) {
+                                            Log.d("TAG_NAME", "YES " + list!![s].book_name)
+//                                            list!!.remove(list!![s])
+                                            Log.d("TAG_NAME_AFTER", "YES " + sortedList!![s].book_name)
+//                                        Paper.book().destroy()
+                                            i = s
+
+                                        }
+                                        else {
+                                            continue
+                                        }
+                                        list!!.removeAt(i)
+                                        s = s - 1
+                                    }
+                                    if (list!!.isNotEmpty()) {
+                                        Paper.book().destroy()
+                                        Paper.book().write("cartItems", list!!)
+                                    } else {
+                                        Paper.book().destroy()
+                                    }
+                                } else {
+                                    Log.d("TAG_EMPTY_SORT", "TAG")
+                                }
+
+//                            if (list!!.isNotEmpty()){
+//                                Paper.book().destroy()
+//                                Paper.book().write("cartItems",list!!)
+//                            }
+//                            else{
+//                                Log.d("TA_ET", "Empty")
+//                            }
+                            } else if (list!!.isEmpty()) {
 //                            Toast.makeText(applicationContext,"No Toast",Toast.LENGTH_LONG).show()
-                            Log.d("TAG","TAG")
+                                Log.d("TAG_EMPTY_LIST", "TAG")
+                            }
+
+                        } catch (e: JSONException) {
+                            e.printStackTrace()
                         }
-
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
                     }
-                }
 
-            },
-            Response.ErrorListener {
+                },
+                Response.ErrorListener {
 
-            }){
+                }){
         }
         var req: RequestQueue = Volley.newRequestQueue(applicationContext)
         req.add(stringRequest)
     }
 
-    private fun deleteOrderedItems(i : Int) {
+    private fun deleteOrderedItems(i: Int) {
 
         var Request: StringRequest = object : StringRequest(Request.Method.POST,
-            "https://usmansorion.000webhostapp.com/delCItems.php",
-            object : Response.Listener<String> {
-                override fun onResponse(response: String?) {
-                    cartList.removeAt(i)
-                }
-            },
-            Response.ErrorListener {
+                "https://usmansorion.000webhostapp.com/delCItems.php",
+                object : Response.Listener<String> {
+                    override fun onResponse(response: String?) {
+                        cartList.removeAt(i)
+                    }
+                },
+                Response.ErrorListener {
 
-            }) {
+                }) {
             @Throws(AuthFailureError::class)
             override fun getParams(): Map<String, String>? {
                 val params: MutableMap<String, String> = HashMap()
@@ -552,49 +611,49 @@ class Home : AppCompatActivity(), BookInterface{
     }
     private fun fetchCartItems() {
         var stringRequest: StringRequest = object : StringRequest(
-            Request.Method.GET,
-            "https://usmansorion.000webhostapp.com/fetchCartItems.php",
-            object : Response.Listener<String> {
-                override fun onResponse(response: String?) {
-                    try {
-                        //converting the string to json array object
-                        val array = JSONArray(response)
-                        cartList.clear()
+                Request.Method.GET,
+                "https://usmansorion.000webhostapp.com/fetchCartItems.php",
+                object : Response.Listener<String> {
+                    override fun onResponse(response: String?) {
+                        try {
+                            //converting the string to json array object
+                            val array = JSONArray(response)
+                            cartList.clear()
 
 
-                        //traversing through all the object
-                        for (i in 0 until array.length()) {
+                            //traversing through all the object
+                            for (i in 0 until array.length()) {
 
-                            //getting product object from json array
-                            val cart = array.getJSONObject(i)
+                                //getting product object from json array
+                                val cart = array.getJSONObject(i)
 
-                            //adding the product to product list
-                            if (cart.getString("buyer") == userName){
-                                cartList.add(
-                                    CartItemsModel(
-                                        cart.getInt("id"),
-                                        cart.getString("book_name"),
-                                        cart.getString("ref_number"),
-                                        cart.getString("buyer"),
-                                        cart.getString("imageFront"),
-                                        cart.getString("book_type")
+                                //adding the product to product list
+                                if (cart.getString("buyer") == userName) {
+                                    cartList.add(
+                                            CartItemsModel(
+                                                    cart.getInt("id"),
+                                                    cart.getString("book_name"),
+                                                    cart.getString("ref_number"),
+                                                    cart.getString("buyer"),
+                                                    cart.getString("imageFront"),
+                                                    cart.getString("book_type")
+                                            )
                                     )
-                                )
+                                }
                             }
+
+                            //creating adapter object and setting it to recyclerview
+
+
+                        } catch (e: JSONException) {
+                            e.printStackTrace()
                         }
-
-                        //creating adapter object and setting it to recyclerview
-
-
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
                     }
-                }
 
-            },
-            Response.ErrorListener {
+                },
+                Response.ErrorListener {
 
-            }){
+                }){
 
         }
         var req: RequestQueue = Volley.newRequestQueue(applicationContext)
@@ -607,15 +666,15 @@ class Home : AppCompatActivity(), BookInterface{
         intent.putExtra("type", currentItem.book_type.toString())
         intent.putExtra("level", currentItem.book_level.toString())
         intent.putExtra(
-            "backImage",
-            currentItem.imageBack.toString()
+                "backImage",
+                currentItem.imageBack.toString()
         )
         intent.putExtra("frontImage", currentItem.imageFront.toString())
         intent.putExtra("rating", currentItem.rating.toString())
         intent.putExtra("loan_status", currentItem.loan_status.toString())
         intent.putExtra("author", currentItem.author)
         intent.putExtra("ref", currentItem.ref_number.toString())
-        intent.putExtra("imageContent","https://usmansorion.000webhostapp.com/content_cover/" +  currentItem.imageContent.toString())
+        intent.putExtra("imageContent", "https://usmansorion.000webhostapp.com/content_cover/" + currentItem.imageContent.toString())
 
         startActivity(intent)
         overridePendingTransition(R.anim.bottom_up, R.anim.bottom_down);

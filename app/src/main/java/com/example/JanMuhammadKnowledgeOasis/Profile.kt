@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -386,7 +388,7 @@ class Profile : AppCompatActivity(), AllOrdersInterface {
                         //creating adapter object and setting it to recyclerview
                         recycler.adapter = rewardAdapter
                         rewardAdapter.notifyDataSetChanged()
-                        Toast.makeText(applicationContext, "Show rewards to our representative, to avail the offer!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "Show rewards to our representative, to avail the offer to choose one!", Toast.LENGTH_LONG).show()
 
                     } catch (e: JSONException) {
                         e.printStackTrace()
@@ -414,6 +416,7 @@ class Profile : AppCompatActivity(), AllOrdersInterface {
         if (currentItem.order_status.toString() != "Processing" && currentItem.order_status != "Shipped" && !currentItem.order_status.equals("Returned")){
             val alertDialog = builder.create()
             alertDialog.show()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             var checkYes = view.findViewById<AppCompatCheckBox>(R.id.checkRYesItem)
             var checkNo = view.findViewById<AppCompatCheckBox>(R.id.checkRNoItem)

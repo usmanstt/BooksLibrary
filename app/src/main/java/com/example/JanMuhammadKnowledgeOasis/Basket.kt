@@ -1,6 +1,8 @@
 package com.example.JanMuhammadKnowledgeOasis
 
 import android.content.*
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -82,7 +84,27 @@ class Basket : AppCompatActivity(), CBookInterface {
         }
         profilebtn.setOnClickListener {
             if (userName.isEmpty()){
-                Toast.makeText(applicationContext, "Please Log In or Sign Up to view your profile",Toast.LENGTH_LONG).show()
+                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                val factory: LayoutInflater = LayoutInflater.from(this)
+                val view: View = factory.inflate(R.layout.dialoglogin, null);
+                builder.setView(view)
+
+                val alertDialog = builder.create()
+                alertDialog.show()
+                alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                val Lt = view.findViewById<TextView>(R.id.loginT)
+                val St = view.findViewById<TextView>(R.id.signupT)
+
+                Lt.setOnClickListener {
+                    val intent = Intent(applicationContext, Login::class.java)
+                    startActivity(intent)
+                }
+
+                St.setOnClickListener {
+                    val intent = Intent(applicationContext, Signup::class.java)
+                    startActivity(intent)
+                }
             }
             else{
                 val intent = Intent(applicationContext, Profile::class.java)
@@ -141,6 +163,7 @@ class Basket : AppCompatActivity(), CBookInterface {
 
                 val alertDialog = builder.create()
                 alertDialog.show()
+                alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
                 val Lt = view.findViewById<TextView>(R.id.loginT)
                 val St = view.findViewById<TextView>(R.id.signupT)

@@ -3,6 +3,8 @@ package com.example.JanMuhammadKnowledgeOasis
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -22,7 +25,7 @@ import com.android.volley.toolbox.Volley
 class Login : AppCompatActivity() {
     private lateinit var signp: TextView
     private lateinit var adminText: TextView
-    private lateinit var btnLogin: Button
+    private lateinit var btnLogin: AppCompatButton
     private lateinit var username: EditText
     private lateinit var password: EditText
     var shp: SharedPreferences? = null
@@ -46,10 +49,11 @@ class Login : AppCompatActivity() {
 
             val alertDialog = builder.create()
             alertDialog.show()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             var username = view.findViewById<EditText>(R.id.loginUsernameAdmin)
             var password = view.findViewById<EditText>(R.id.loginPasswordAdmin)
-            var btnLoginAdmin = view.findViewById<Button>(R.id.btnLoginAdmin)
+            var btnLoginAdmin = view.findViewById<AppCompatButton>(R.id.btnLoginAdmin)
 
             btnLoginAdmin.setOnClickListener {
                 var name = username.text.toString().trim()

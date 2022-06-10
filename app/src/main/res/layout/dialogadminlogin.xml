@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@drawable/bg"
     >
 
     <TextView
@@ -11,10 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="@dimen/_15sdp"
-        android:fontFamily="@font/bebasneueregular"
         android:text="Admin Login"
         android:textColor="@color/black"
-        android:textSize="@dimen/_25ssp"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:hint="Enter Username"
         android:inputType="text"
-        android:background="@drawable/circle"
+        android:background="@drawable/background_act"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -47,7 +47,7 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:hint="Enter Password"
         android:inputType="textPassword"
-        android:background="@drawable/circle"
+        android:background="@drawable/background_act"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginUsernameAdmin"
@@ -58,14 +58,14 @@
         android:textCursorDrawable="@color/black"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="@dimen/_150sdp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordAdmin"
         android:layout_marginTop="@dimen/_20sdp"
-        android:backgroundTint="@color/green"
+        android:background="@drawable/button_bg"
         android:text="Log In"
         android:textColor="@color/white"
         android:elevation="@dimen/_5sdp"
