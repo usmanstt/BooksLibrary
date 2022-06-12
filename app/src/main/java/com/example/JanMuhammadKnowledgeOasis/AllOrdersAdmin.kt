@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.hmomeni.progresscircula.ProgressCircula
 import org.json.JSONArray
 import org.json.JSONException
 import java.util.*
@@ -39,6 +40,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
     lateinit var ridIDs: ArrayList<String>
     lateinit var spinner: Spinner
     lateinit var backBtn: ImageView
+    lateinit var progressCircula: ProgressCircula
     var arrayStatus: ArrayList<String> = arrayListOf("All", "Processing", "Shipped", "Delivered", "Returned")
     var arrayStatus1: ArrayList<String> = arrayListOf("Processing", "Shipped", "Delivered", "Returned")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +53,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
 
         backBtn = findViewById(R.id.backBtn)
         spinner = findViewById(R.id.spinnerStatusAdmin)
+        progressCircula = findViewById(R.id.progressBarC)
 
         var arrayAdapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_dropdown_item, arrayStatus)
         spinner.adapter = arrayAdapter
@@ -110,6 +113,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
     }
 
     private fun fetchOrdersR() {
+        progressCircula.visibility = View.VISIBLE
         var stringRequest: StringRequest = object : StringRequest(
                 Request.Method.GET,
                 "https://usmansorion.000webhostapp.com/fetchAllOrders.php",
@@ -153,8 +157,13 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
 
                             recyclerView.adapter = allOrdersAdapterR
                             allOrdersAdapterR.notifyDataSetChanged()
+                            progressCircula.visibility = View.GONE
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin)
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin).notifyDataSetChanged()
+                            if (arrayOrdersR.isEmpty()){
+                                Toast.makeText(applicationContext, "No books returned yet.", Toast.LENGTH_LONG).show()
+                                progressCircula.visibility = View.GONE
+                            }
 
                         } catch (e: JSONException) {
                             e.printStackTrace()
@@ -171,6 +180,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
     }
 
     private fun fetchOrdersD() {
+        progressCircula.visibility = View.VISIBLE
         var stringRequest: StringRequest = object : StringRequest(
                 Request.Method.GET,
                 "https://usmansorion.000webhostapp.com/fetchAllOrders.php",
@@ -215,8 +225,13 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
 
                             recyclerView.adapter = allOrdersAdapterD
                             allOrdersAdapterD.notifyDataSetChanged()
+                            progressCircula.visibility = View.GONE
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin)
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin).notifyDataSetChanged()
+                            if (arrayOrdersD.isEmpty()){
+                                Toast.makeText(applicationContext, "No books delivered yet.", Toast.LENGTH_LONG).show()
+                                progressCircula.visibility = View.GONE
+                            }
 
                         } catch (e: JSONException) {
                             e.printStackTrace()
@@ -233,6 +248,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
     }
 
     private fun fetchOrdersS() {
+        progressCircula.visibility = View.VISIBLE
         var stringRequest: StringRequest = object : StringRequest(
                 Request.Method.GET,
                 "https://usmansorion.000webhostapp.com/fetchAllOrders.php",
@@ -277,8 +293,14 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
 
                             recyclerView.adapter = allOrdersAdapterS
                             allOrdersAdapterS.notifyDataSetChanged()
+                            progressCircula.visibility = View.GONE
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin)
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin).notifyDataSetChanged()
+
+                            if (arrayOrdersS.isEmpty()){
+                                Toast.makeText(applicationContext, "No books shipped yet.", Toast.LENGTH_LONG).show()
+                                progressCircula.visibility = View.GONE
+                            }
 
                         } catch (e: JSONException) {
                             e.printStackTrace()
@@ -295,6 +317,7 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
     }
 
     private fun fetchOrdersP() {
+        progressCircula.visibility = View.VISIBLE
         var stringRequest: StringRequest = object : StringRequest(
                 Request.Method.GET,
                 "https://usmansorion.000webhostapp.com/fetchAllOrders.php",
@@ -339,8 +362,14 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
 
                             recyclerView.adapter = allOrdersAdapterP
                             allOrdersAdapterP.notifyDataSetChanged()
+                            progressCircula.visibility = View.GONE
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin)
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin).notifyDataSetChanged()
+
+                            if (arrayOrdersP.isEmpty()){
+                                Toast.makeText(applicationContext, "No orders processed yet.", Toast.LENGTH_LONG).show()
+                                progressCircula.visibility = View.GONE
+                            }
 
                         } catch (e: JSONException) {
                             e.printStackTrace()
@@ -397,8 +426,12 @@ class AllOrdersAdmin : AppCompatActivity(), AllOrdersInterfaceAdmin {
 
                                 recyclerView.adapter = allOrdersAdapter
                                 allOrdersAdapter.notifyDataSetChanged()
+                                progressCircula.visibility = View.GONE
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin)
 //                                    AllOrdersAdminAdapter(arrayOrdersP,this@AllOrdersAdmin).notifyDataSetChanged()
+                                if (arrayOrders.isEmpty()){
+                                    Toast.makeText(applicationContext, "No Orders Placed Yet!", Toast.LENGTH_LONG).show()
+                                }
                             }
 
                         } catch (e: JSONException) {

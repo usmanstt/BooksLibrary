@@ -3,6 +3,7 @@ package com.example.JanMuhammadKnowledgeOasis
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -15,6 +16,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hmomeni.progresscircula.ProgressCircula
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -24,6 +26,7 @@ class AllRiders : AppCompatActivity(), RiderInterface {
     lateinit var adapter: RiderAdapter
     lateinit var riderList: ArrayList<RiderModel>
     lateinit var backBtn: ImageView
+    lateinit var progressCircula: ProgressCircula
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,7 @@ class AllRiders : AppCompatActivity(), RiderInterface {
         recyclerView.setHasFixedSize(true)
 
         backBtn = findViewById(R.id.backBtn)
+        progressCircula = findViewById(R.id.progressBarC)
 
         backBtn.setOnClickListener {
             val intent = Intent(applicationContext, AdminPortal::class.java)
@@ -85,6 +89,11 @@ class AllRiders : AppCompatActivity(), RiderInterface {
                             if (riderList.isNotEmpty()){
                                 recyclerView.adapter = adapter
                                 adapter.notifyDataSetChanged()
+                                progressCircula.visibility = View.GONE
+                            }
+                            else{
+                                Toast.makeText(applicationContext, "No rider added yet", Toast.LENGTH_LONG).show()
+                                progressCircula.visibility = View.GONE
                             }
 
                         } catch (e: JSONException) {

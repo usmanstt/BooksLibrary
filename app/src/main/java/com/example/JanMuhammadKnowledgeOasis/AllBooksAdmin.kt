@@ -3,6 +3,7 @@ package com.example.JanMuhammadKnowledgeOasis
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hmomeni.progresscircula.ProgressCircula
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -24,6 +26,7 @@ class AllBooksAdmin : AppCompatActivity(), BookInterfaceAdmin {
     private lateinit var booksAdapter: BooksAdapterAdmin
     private lateinit var btnAllbooks: FloatingActionButton
     lateinit var backBtn: ImageView
+    lateinit var progressCircula: ProgressCircula
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,7 @@ class AllBooksAdmin : AppCompatActivity(), BookInterfaceAdmin {
 
         btnAllbooks = findViewById(R.id.bookADD)
         backBtn = findViewById(R.id.backBtn)
+        progressCircula = findViewById(R.id.progressBarC)
 
         booksList = ArrayList()
         booksAdapter = BooksAdapterAdmin(booksList, applicationContext, this)
@@ -104,6 +108,7 @@ class AllBooksAdmin : AppCompatActivity(), BookInterfaceAdmin {
                         //creating adapter object and setting it to recyclerview
                         recyclerView.adapter = booksAdapter
                         booksAdapter.notifyDataSetChanged()
+                        progressCircula.visibility = View.GONE
 
                     } catch (e: JSONException) {
                         e.printStackTrace()
